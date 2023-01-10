@@ -1,0 +1,14 @@
+---
+title: "Biol_1007A Web Page"
+author: "Abigail Griffin"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+---
+
+## Assignments
+[Assignment 1](Assignment1.html)
+
+[Website Link](https://google.com)
