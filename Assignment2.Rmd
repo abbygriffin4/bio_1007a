@@ -39,6 +39,6 @@ Hello and *welcome to my website*. My name is **Abby** and I am a student in *Re
 
 In Rmarkdown you can make a superscript^2^ and a subscript~4~  
 
-Here is a crucial algebraic equation!   $$y = a + b$$
+Here is a crucial algebraic equation:   $$y = a + b$$
 
 `If I use code fencing, it tells Rmarkdown to ignore formatting.`  

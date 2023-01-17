@@ -1,0 +1,85 @@
+---
+title: "Assignment3"
+author: "Abigail Griffin"
+date: "`r Sys.Date()`"
+output: html_document
+---
+### This is question 1:
+#### a.  
+```{r}
+x<-1.1
+a<-2.2
+b<-3.3
+square<-function(z=NULL){
+  z<-(x^a^b)
+  print(z)
+}
+square(z=x)
+```
+
+
+#### b.  
+```{r}
+x<-1.1
+a<-2.2
+b<-3.3
+square<-function(z=NULL){
+  z<-(x^a)^b
+  print(z)
+}
+square(z=x)
+```
+
+#### c.  
+```{r}
+x<-1.1
+z<-3*(x^3)+2*(x^2)+1
+print (z)
+```
+
+### This is question 2:
+#### a: (1,2,3,4,5,6,7,8,7,6,5,4,3,2,1)   
+```{r}
+c((seq(from=1, to=8)), (seq(from=7, to=1)))
+```
+#### b: (1,2,2,3,3,3,4,4,4,4,5,5,5,5,5)  
+```{r}
+rep(1:5, 1:5)
+```
+#### c: (5,4,4,3,3,3,2,2,2,2,1,1,1,1,1)   
+```{r}
+rep(5:1, 1:5)
+```
+
+### This is question 3:
+#### a: the serpent arrives and gets in the back of the line  
+```{r}
+queue <- c("sheep", "fox", "owl", "ant")
+queue<-c(queue[1:4], "serpent")
+```
+#### b: the sheep enters the club (so disappears from the line)  
+```{r}
+queue<-c(queue[-1])
+```
+
+#### c: the donkey arrives and talks his way to the front of the line  
+```{r}
+queue<-c("donkey", queue[1:4])
+```
+
+#### d: the serpent gets impatient and leaves  
+```{r}
+queue<-c(queue[-5])
+```
+
+#### e: the aphid arrives and the ant invites him to cut in line (hint: check out the append function)  
+```{r}
+queue<-append(queue, "aphid", after=3)
+```
+
+#### f: Finally, determine the position of the aphid in the line (hint: use the which function).  
+```{r}
+which(queue=="aphid")
+```
+
+
