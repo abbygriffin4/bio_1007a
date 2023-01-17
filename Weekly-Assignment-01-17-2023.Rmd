@@ -5,6 +5,7 @@ date: "`r Sys.Date()`"
 output: html_document
 ---
 #### A friend has asked you how to set up a GitHub web page in RStudio. Create an Rmarkdown file that explains the steps of setting one up and any troubleshooting advice you learned that could help them. Make as clear and helpful a document as you can, including any links, notes, or pictures that you deem appropriate.    
+this assignment is not fully completed - have to add pics & edit!
 ## How to set up a GitHub web page   
 ### Part 1: Download Git   
 1. First, download XCode Command Line Tools [here](https://developer.apple.com/download/all/). If your computer is updated, you should download Command Line Tools for XCode 14.2. (*Troubleshooting tip*: If this doesn't work, you can download XCode from the App Store, but beware that it is a large file which takes ample time to download). These tools allow for the download and use of Git in R.   
