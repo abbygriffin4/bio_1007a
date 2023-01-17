@@ -56,25 +56,30 @@ rep(5:1, 1:5)
 ```{r}
 queue <- c("sheep", "fox", "owl", "ant")
 queue<-c(queue[1:4], "serpent")
+print (queue)
 ```
 #### b: the sheep enters the club (so disappears from the line)  
 ```{r}
 queue<-c(queue[-1])
+print(queue)
 ```
 
 #### c: the donkey arrives and talks his way to the front of the line  
 ```{r}
 queue<-c("donkey", queue[1:4])
+print(queue)
 ```
 
 #### d: the serpent gets impatient and leaves  
 ```{r}
 queue<-c(queue[-5])
+print(queue)
 ```
 
 #### e: the aphid arrives and the ant invites him to cut in line (hint: check out the append function)  
 ```{r}
 queue<-append(queue, "aphid", after=3)
+print(queue)
 ```
 
 #### f: Finally, determine the position of the aphid in the line (hint: use the which function).  
