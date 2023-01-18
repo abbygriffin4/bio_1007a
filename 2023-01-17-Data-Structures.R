@@ -62,7 +62,7 @@ rnorm(n=100, mean=100, sd=30)
 hist(rnorm(n=100, mean=100, sd=30)) #use these ways to simulate data
 
 
-## MATRIX DATA STRUCTURE: 2 dimensional (rows and columns), only homogenous data (usually numeric)
+## MATRIX DATA STRUCTURE: 2 dimensional (rows and columns), only homogeneous data (usually numeric)
 ## matrix is an atomic vector organized into rows and columns
 my_vec<-1:12 # can arrange into rows and columns in form of a matrix using the matrix function
 m<-matrix(data=my_vec, nrow=4) # will use default # of rows unless specified
@@ -180,3 +180,9 @@ complete.cases(m) # gives T/F as to whether whole row is 'complete' (no NAs)
 
 # get complete cases for only certain rows
 m[complete.cases(m[,c(1:2)]),] # without second comma it will not come back as vector- returns all columns but doesn't complete case for columns 3&4. says only look at first two columns of matrix
+
+
+##if you don't want your code to show:
+```{r EVAL=FALSE}
+
+````
