@@ -13,7 +13,7 @@
 
 <meta name="date" content="2023-01-19" />
 
-<title>Assignment 4</title>
+<title>Assignment5</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -350,108 +350,191 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Assignment 4</h1>
+<h1 class="title toc-ignore">Assignment5</h1>
 <h4 class="author">Abigail Griffin</h4>
 <h4 class="date">2023-01-19</h4>
 
 </div>
 
 
-<div id="question-1-assign-to-the-variable-n_dims-a-single-random-integer-between-3-and-10" class="section level4">
-<h4>Question 1: Assign to the variable n_dims a single random integer
-between 3 and 10</h4>
-<pre class="r"><code>n_dims&lt;-sample(3:10,1)
-print(n_dims)</code></pre>
-<pre><code>## [1] 10</code></pre>
-<div id="a-create-a-vector-of-consecutive-integers-from-1-to-n_dims2." class="section level6">
-<h6>a: Create a vector of consecutive integers from 1 to
-n_dims<sup>2</sup>.</h6>
-<pre class="r"><code>vector&lt;-seq(1:n_dims^2)
-print(vector)</code></pre>
-<pre><code>##   [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18
-##  [19]  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36
-##  [37]  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54
-##  [55]  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71  72
-##  [73]  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90
-##  [91]  91  92  93  94  95  96  97  98  99 100</code></pre>
+<div id="question-2-create-a-list-with-the-following-named-elements" class="section level4">
+<h4>Question 2: Create a list with the following named elements:</h4>
+<div id="my_matrix-which-is-a-4-x-4-matrix-filled-with-random-uniform-values-my_logical-which-is-a-100-element-vector-of-true-or-false-values.-you-can-do-this-efficiently-by-setting-up-a-vector-of-random-values-and-then-applying-an-inequality-to-it.-my_letters-which-is-a-26-element-vector-of-all-the-lower-case-letters-in-random-order." class="section level6">
+<h6><code>my_matrix</code>, which is a 4 x 4 matrix filled with random
+uniform values, my_logical which is a 100-element vector of TRUE or
+FALSE values. You can do this efficiently by setting up a vector of
+random values and then applying an inequality to it., my_letters, which
+is a 26-element vector of all the lower-case letters in random
+order.</h6>
+<pre class="r"><code>my_data&lt;-runif(n=16, min=0, max=20)
+my_matrix&lt;-matrix(data=my_data,nrow=4, ncol=4)
+print(my_matrix)</code></pre>
+<pre><code>##            [,1]      [,2]       [,3]      [,4]
+## [1,] 15.6090974 13.936011  0.5278277 17.735171
+## [2,] 19.2108698  0.244642 17.4305300  1.188729
+## [3,]  0.8084218  8.420721 18.7719703  9.082085
+## [4,]  2.7708039  1.887842  5.3599815 12.171156</code></pre>
+<pre class="r"><code>random_numbers&lt;-runif(n=100, min=0, max=100)
+my_logical&lt;- random_numbers&gt;50
+
+my_letters&lt;-c(letters[1:26]) ## is this still a list?
+my_letters&lt;-sample(my_letters)
+typeof(my_letters)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code>assignment4_list&lt;-list(my_matrix, my_logical, my_letters)</code></pre>
 </div>
 </div>
-<div id="b-use-the-sample-function-to-randomly-reshuffle-these-values." class="section level4">
-<h4>b: Use the sample function to randomly reshuffle these values.</h4>
-<pre class="r"><code>sample(vector)</code></pre>
-<pre><code>##   [1]  39  88  93  82   4  67  79  21  23  99  26  78  68  51  71  97  62  80
-##  [19]  45  74  85  32  15  16 100  31  55  56   5  83  28  19  98  11  89  75
-##  [37]   6  42  24  66  18  13  77  59  61  47  72  96  34  33  35   8  53  49
-##  [55]  64  48  36  25  50  17  20  92  40  14  63  46   1  76  41  95  84  86
-##  [73]  29  58  43  22   7  90  10  70   9  69  60  38  27  65  91   3  12  81
-##  [91]  94  87  54  30  57  52  44   2  37  73</code></pre>
+<div id="then-complete-the-following-steps" class="section level4">
+<h4>Then, complete the following steps:</h4>
+<div id="a-create-a-new-list-which-has-the-element22-from-the-matrix-the-second-element-of-the-logical-vector-and-the-second-element-of-the-letters-vector." class="section level6">
+<h6>a: create a new list, which has the element[2,2] from the matrix,
+the second element of the logical vector, and the second element of the
+letters vector.</h6>
+<pre class="r"><code>new_list&lt;-list(assignment4_list[[1]][2,2],assignment4_list[[2]][2],assignment4_list[[3]][2])</code></pre>
 </div>
-<div id="c-create-a-square-matrix-with-these-elements.-print-out-the-matrix." class="section level4">
-<h4>c: create a square matrix with these elements. Print out the
-matrix.</h4>
-<pre class="r"><code>m&lt;-matrix(data=vector, ncol=n_dims)
-print(m)</code></pre>
-<pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
-##  [1,]    1   11   21   31   41   51   61   71   81    91
-##  [2,]    2   12   22   32   42   52   62   72   82    92
-##  [3,]    3   13   23   33   43   53   63   73   83    93
-##  [4,]    4   14   24   34   44   54   64   74   84    94
-##  [5,]    5   15   25   35   45   55   65   75   85    95
-##  [6,]    6   16   26   36   46   56   66   76   86    96
-##  [7,]    7   17   27   37   47   57   67   77   87    97
-##  [8,]    8   18   28   38   48   58   68   78   88    98
-##  [9,]    9   19   29   39   49   59   69   79   89    99
-## [10,]   10   20   30   40   50   60   70   80   90   100</code></pre>
+<div id="b-use-the-typeof-function-to-confirm-the-underlying-data-types-of-each-component-in-this-list" class="section level6">
+<h6>b: use the typeof() function to confirm the underlying data types of
+each component in this list</h6>
+<pre class="r"><code>typeof(assignment4_list[[1]]) # double</code></pre>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<pre class="r"><code>typeof(assignment4_list[[2]]) # logical</code></pre>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<pre class="r"><code>typeof(assignment4_list[[3]]) # character</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
 </div>
-<div id="d-find-a-function-in-r-to-transpose-the-matrix.-transpose-flips-elements-in-the-matrix.-print-it-out-again-and-note-how-it-has-changed." class="section level4">
-<h4>d: find a function in r to transpose the matrix. Transpose flips
-elements in the matrix. Print it out again and note how it has
-changed.</h4>
-<pre class="r"><code>t(m)</code></pre>
-<pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
-##  [1,]    1    2    3    4    5    6    7    8    9    10
-##  [2,]   11   12   13   14   15   16   17   18   19    20
-##  [3,]   21   22   23   24   25   26   27   28   29    30
-##  [4,]   31   32   33   34   35   36   37   38   39    40
-##  [5,]   41   42   43   44   45   46   47   48   49    50
-##  [6,]   51   52   53   54   55   56   57   58   59    60
-##  [7,]   61   62   63   64   65   66   67   68   69    70
-##  [8,]   71   72   73   74   75   76   77   78   79    80
-##  [9,]   81   82   83   84   85   86   87   88   89    90
-## [10,]   91   92   93   94   95   96   97   98   99   100</code></pre>
+<div id="c-i-combine-the-underlying-elements-from-the-new-list-into-a-single-atomic-vector-with-the-c-function.-ii-what-is-the-data-type-of-this-vector" class="section level6">
+<h6>c: i) combine the underlying elements from the new list into a
+single atomic vector with the c() function. ii) What is the data type of
+this vector?</h6>
+<pre class="r"><code># i)
+single_vector&lt;-c(new_list[[1]],new_list[[2]],new_list[[3]])
+
+# ii)
+typeof(single_vector)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code># it has been coerced to character</code></pre>
 </div>
-<div id="e-calculate-the-sum-and-the-mean-of-the-elements-in-the-first-row-and-then-the-last-row." class="section level4">
-<h4>e: calculate the sum and the mean of the elements in the first row
-and then the last row.</h4>
-<pre class="r"><code>mdataframe&lt;-data.frame(m)
-print(m)</code></pre>
-<pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
-##  [1,]    1   11   21   31   41   51   61   71   81    91
-##  [2,]    2   12   22   32   42   52   62   72   82    92
-##  [3,]    3   13   23   33   43   53   63   73   83    93
-##  [4,]    4   14   24   34   44   54   64   74   84    94
-##  [5,]    5   15   25   35   45   55   65   75   85    95
-##  [6,]    6   16   26   36   46   56   66   76   86    96
-##  [7,]    7   17   27   37   47   57   67   77   87    97
-##  [8,]    8   18   28   38   48   58   68   78   88    98
-##  [9,]    9   19   29   39   49   59   69   79   89    99
-## [10,]   10   20   30   40   50   60   70   80   90   100</code></pre>
-<pre class="r"><code>rowSums(mdataframe[1,])</code></pre>
-<pre><code>##   1 
-## 460</code></pre>
-<pre class="r"><code>rowSums(mdataframe[5,])</code></pre>
-<pre><code>##   5 
-## 500</code></pre>
-<pre class="r"><code>rowMeans(mdataframe[1,])</code></pre>
-<pre><code>##  1 
-## 46</code></pre>
-<pre class="r"><code>rowMeans(mdataframe[5,])</code></pre>
-<pre><code>##  5 
-## 50</code></pre>
 </div>
-<div id="f-set-your-code-up-so-you-can-re-run-it-to-create-a-matrix-of-a-different-size-by-only-changing-the-n_dims-value" class="section level4">
-<h4>f: set your code up so you can re-run it to create a matrix of a
-different size by only changing the n_dims value</h4>
+<div id="question-3-create-an-empty-data-frame-with-two-variables-columns-and-26-observations-rows-below" class="section level4">
+<h4>Question 3: Create an empty data frame with two variables (=
+columns) and 26 observations (= rows) below:</h4>
+<ul>
+<li>call the first column/variable <code>my_unifs</code> and fill it
+with 26 random uniform values from 0 to 10</li>
+<li>call the second variable <code>my_letters</code> and fill it with 26
+capital letters in random order.</li>
+<li>for the first variable, use a single line of code in R to select 4
+random rows and replace the numerical values in those rows with NA.</li>
+<li>for the first variable, write a single line of R code to identify
+which rows have the missing values.</li>
+<li>re-order the entire data frame to arrange the second variable in
+alphabetical order.</li>
+<li>calculate the column mean for the first variable.</li>
+<li>rename the second column ‘my_LETTERS’</li>
+</ul>
+<pre class="r"><code>my_unifs&lt;-runif(n=26, min=0, max=10)
+my_letters&lt;-sample(letters[1:26])
+toupper(my_letters)</code></pre>
+<pre><code>##  [1] &quot;N&quot; &quot;J&quot; &quot;G&quot; &quot;I&quot; &quot;E&quot; &quot;W&quot; &quot;Y&quot; &quot;V&quot; &quot;L&quot; &quot;Z&quot; &quot;O&quot; &quot;X&quot; &quot;T&quot; &quot;R&quot; &quot;P&quot; &quot;A&quot; &quot;B&quot; &quot;M&quot; &quot;U&quot;
+## [20] &quot;D&quot; &quot;F&quot; &quot;H&quot; &quot;Q&quot; &quot;C&quot; &quot;S&quot; &quot;K&quot;</code></pre>
+<pre class="r"><code>q3df&lt;-data.frame(my_unifs, my_letters, stringsAsFactors = FALSE)
+print(q3df)</code></pre>
+<pre><code>##     my_unifs my_letters
+## 1  6.7373123          n
+## 2  6.3701594          j
+## 3  6.5554957          g
+## 4  8.8455661          i
+## 5  0.9178711          e
+## 6  3.4575802          w
+## 7  0.7385900          y
+## 8  8.8907363          v
+## 9  2.5952435          l
+## 10 6.6511132          z
+## 11 2.5908999          o
+## 12 0.7587229          x
+## 13 4.5696534          t
+## 14 2.7592931          r
+## 15 0.3300302          p
+## 16 7.9890882          a
+## 17 5.2334139          b
+## 18 3.8145436          m
+## 19 9.9727323          u
+## 20 5.0904776          d
+## 21 7.3880741          f
+## 22 1.3064062          h
+## 23 5.7973244          q
+## 24 8.1844931          c
+## 25 5.9479967          s
+## 26 6.0449919          k</code></pre>
+<pre class="r"><code>set.seed(1)
+q3df[sample(nrow(q3df), 4),1]&lt;-NA
+print(q3df)</code></pre>
+<pre><code>##     my_unifs my_letters
+## 1         NA          n
+## 2  6.3701594          j
+## 3  6.5554957          g
+## 4         NA          i
+## 5  0.9178711          e
+## 6  3.4575802          w
+## 7         NA          y
+## 8  8.8907363          v
+## 9  2.5952435          l
+## 10 6.6511132          z
+## 11 2.5908999          o
+## 12 0.7587229          x
+## 13 4.5696534          t
+## 14 2.7592931          r
+## 15 0.3300302          p
+## 16 7.9890882          a
+## 17 5.2334139          b
+## 18 3.8145436          m
+## 19 9.9727323          u
+## 20 5.0904776          d
+## 21 7.3880741          f
+## 22 1.3064062          h
+## 23 5.7973244          q
+## 24 8.1844931          c
+## 25        NA          s
+## 26 6.0449919          k</code></pre>
+<pre class="r"><code>q3df[is.na(q3df$my_unifs),]</code></pre>
+<pre><code>##    my_unifs my_letters
+## 1        NA          n
+## 4        NA          i
+## 7        NA          y
+## 25       NA          s</code></pre>
+<pre class="r"><code>abc_q3df&lt;-q3df[order(q3df$my_letters), ]
+
+mean(abc_q3df$my_unifs, na.rm=TRUE)</code></pre>
+<pre><code>## [1] 4.875834</code></pre>
+<pre class="r"><code>colnames(abc_q3df)[colnames(abc_q3df) == &quot;my_letters&quot;] =&quot;my_LETTERS&quot;
+print(abc_q3df)</code></pre>
+<pre><code>##     my_unifs my_LETTERS
+## 16 7.9890882          a
+## 17 5.2334139          b
+## 24 8.1844931          c
+## 20 5.0904776          d
+## 5  0.9178711          e
+## 21 7.3880741          f
+## 3  6.5554957          g
+## 22 1.3064062          h
+## 4         NA          i
+## 2  6.3701594          j
+## 26 6.0449919          k
+## 9  2.5952435          l
+## 18 3.8145436          m
+## 1         NA          n
+## 11 2.5908999          o
+## 15 0.3300302          p
+## 23 5.7973244          q
+## 14 2.7592931          r
+## 25        NA          s
+## 13 4.5696534          t
+## 19 9.9727323          u
+## 8  8.8907363          v
+## 6  3.4575802          w
+## 12 0.7587229          x
+## 7         NA          y
+## 10 6.6511132          z</code></pre>
 </div>
 
 

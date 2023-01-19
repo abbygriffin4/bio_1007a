@@ -13,10 +13,12 @@ output:
 [Assignment 2](Assignment2.html)     
 [Assignment 3](Assignment3.html)   
 [Assignment 4](Assignment4.html)    
+[Assignment 5](Assignment5.html)
 
 ## Weekly Assignments
 [Weekly Assignment #1](Weekly-Assignment-01-17-2023.html)  
 
 ## Class Notes
 [Scripting in R 01-12-2023](2023-01-12-Scripting-in-R.R)    
-[Data Structures 01-17-2023](2023-01-17-Data-Structures.R)   
+[Data Structures 01-17-2023](2023-01-17-Data-Structures.R)  
+[Finishing Up Matrices 01-19-2023](2023-01-17-Data-Structures.R)
