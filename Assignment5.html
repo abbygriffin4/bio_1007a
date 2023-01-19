@@ -13,7 +13,7 @@
 
 <meta name="date" content="2023-01-19" />
 
-<title>Assignment5</title>
+<title>Assignment 5</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -350,7 +350,7 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Assignment5</h1>
+<h1 class="title toc-ignore">Assignment 5</h1>
 <h4 class="author">Abigail Griffin</h4>
 <h4 class="date">2023-01-19</h4>
 
@@ -369,11 +369,11 @@ order.</h6>
 <pre class="r"><code>my_data&lt;-runif(n=16, min=0, max=20)
 my_matrix&lt;-matrix(data=my_data,nrow=4, ncol=4)
 print(my_matrix)</code></pre>
-<pre><code>##            [,1]      [,2]       [,3]      [,4]
-## [1,] 15.6090974 13.936011  0.5278277 17.735171
-## [2,] 19.2108698  0.244642 17.4305300  1.188729
-## [3,]  0.8084218  8.420721 18.7719703  9.082085
-## [4,]  2.7708039  1.887842  5.3599815 12.171156</code></pre>
+<pre><code>##           [,1]     [,2]       [,3]      [,4]
+## [1,] 15.376149 18.20018 18.3068670 14.532495
+## [2,] 16.450886 18.50802  1.0714191  5.976376
+## [3,] 11.383267 11.24362 17.1464913  2.754618
+## [4,]  4.794665 15.16601  0.8451504 10.714600</code></pre>
 <pre class="r"><code>random_numbers&lt;-runif(n=100, min=0, max=100)
 my_logical&lt;- random_numbers&gt;50
 
@@ -435,106 +435,106 @@ alphabetical order.</li>
 <pre class="r"><code>my_unifs&lt;-runif(n=26, min=0, max=10)
 my_letters&lt;-sample(letters[1:26])
 toupper(my_letters)</code></pre>
-<pre><code>##  [1] &quot;N&quot; &quot;J&quot; &quot;G&quot; &quot;I&quot; &quot;E&quot; &quot;W&quot; &quot;Y&quot; &quot;V&quot; &quot;L&quot; &quot;Z&quot; &quot;O&quot; &quot;X&quot; &quot;T&quot; &quot;R&quot; &quot;P&quot; &quot;A&quot; &quot;B&quot; &quot;M&quot; &quot;U&quot;
-## [20] &quot;D&quot; &quot;F&quot; &quot;H&quot; &quot;Q&quot; &quot;C&quot; &quot;S&quot; &quot;K&quot;</code></pre>
+<pre><code>##  [1] &quot;L&quot; &quot;F&quot; &quot;T&quot; &quot;N&quot; &quot;D&quot; &quot;U&quot; &quot;X&quot; &quot;B&quot; &quot;P&quot; &quot;Q&quot; &quot;Z&quot; &quot;R&quot; &quot;A&quot; &quot;C&quot; &quot;J&quot; &quot;H&quot; &quot;G&quot; &quot;M&quot; &quot;Y&quot;
+## [20] &quot;O&quot; &quot;W&quot; &quot;K&quot; &quot;S&quot; &quot;E&quot; &quot;I&quot; &quot;V&quot;</code></pre>
 <pre class="r"><code>q3df&lt;-data.frame(my_unifs, my_letters, stringsAsFactors = FALSE)
 print(q3df)</code></pre>
 <pre><code>##     my_unifs my_letters
-## 1  6.7373123          n
-## 2  6.3701594          j
-## 3  6.5554957          g
-## 4  8.8455661          i
-## 5  0.9178711          e
-## 6  3.4575802          w
-## 7  0.7385900          y
-## 8  8.8907363          v
-## 9  2.5952435          l
-## 10 6.6511132          z
-## 11 2.5908999          o
-## 12 0.7587229          x
-## 13 4.5696534          t
-## 14 2.7592931          r
-## 15 0.3300302          p
-## 16 7.9890882          a
-## 17 5.2334139          b
-## 18 3.8145436          m
-## 19 9.9727323          u
-## 20 5.0904776          d
-## 21 7.3880741          f
-## 22 1.3064062          h
-## 23 5.7973244          q
-## 24 8.1844931          c
-## 25 5.9479967          s
-## 26 6.0449919          k</code></pre>
+## 1  2.7859343          l
+## 2  6.6569195          f
+## 3  8.8780448          t
+## 4  9.8768290          n
+## 5  2.6376054          d
+## 6  1.0159374          u
+## 7  1.4258857          x
+## 8  7.6602072          b
+## 9  9.9535790          p
+## 10 7.6121371          q
+## 11 4.4342669          z
+## 12 5.7398298          r
+## 13 2.4737594          a
+## 14 3.1805653          c
+## 15 6.7551052          j
+## 16 0.3052338          h
+## 17 5.2879537          g
+## 18 7.7067983          m
+## 19 2.7630060          y
+## 20 3.0676173          o
+## 21 2.0202329          w
+## 22 9.2317141          k
+## 23 6.3305437          s
+## 24 9.3383956          e
+## 25 9.9997183          i
+## 26 1.3030883          v</code></pre>
 <pre class="r"><code>set.seed(1)
 q3df[sample(nrow(q3df), 4),1]&lt;-NA
 print(q3df)</code></pre>
 <pre><code>##     my_unifs my_letters
-## 1         NA          n
-## 2  6.3701594          j
-## 3  6.5554957          g
-## 4         NA          i
-## 5  0.9178711          e
-## 6  3.4575802          w
-## 7         NA          y
-## 8  8.8907363          v
-## 9  2.5952435          l
-## 10 6.6511132          z
-## 11 2.5908999          o
-## 12 0.7587229          x
-## 13 4.5696534          t
-## 14 2.7592931          r
-## 15 0.3300302          p
-## 16 7.9890882          a
-## 17 5.2334139          b
-## 18 3.8145436          m
-## 19 9.9727323          u
-## 20 5.0904776          d
-## 21 7.3880741          f
-## 22 1.3064062          h
-## 23 5.7973244          q
-## 24 8.1844931          c
-## 25        NA          s
-## 26 6.0449919          k</code></pre>
+## 1         NA          l
+## 2  6.6569195          f
+## 3  8.8780448          t
+## 4         NA          n
+## 5  2.6376054          d
+## 6  1.0159374          u
+## 7         NA          x
+## 8  7.6602072          b
+## 9  9.9535790          p
+## 10 7.6121371          q
+## 11 4.4342669          z
+## 12 5.7398298          r
+## 13 2.4737594          a
+## 14 3.1805653          c
+## 15 6.7551052          j
+## 16 0.3052338          h
+## 17 5.2879537          g
+## 18 7.7067983          m
+## 19 2.7630060          y
+## 20 3.0676173          o
+## 21 2.0202329          w
+## 22 9.2317141          k
+## 23 6.3305437          s
+## 24 9.3383956          e
+## 25        NA          i
+## 26 1.3030883          v</code></pre>
 <pre class="r"><code>q3df[is.na(q3df$my_unifs),]</code></pre>
 <pre><code>##    my_unifs my_letters
-## 1        NA          n
-## 4        NA          i
-## 7        NA          y
-## 25       NA          s</code></pre>
+## 1        NA          l
+## 4        NA          n
+## 7        NA          x
+## 25       NA          i</code></pre>
 <pre class="r"><code>abc_q3df&lt;-q3df[order(q3df$my_letters), ]
 
 mean(abc_q3df$my_unifs, na.rm=TRUE)</code></pre>
-<pre><code>## [1] 4.875834</code></pre>
+<pre><code>## [1] 5.197843</code></pre>
 <pre class="r"><code>colnames(abc_q3df)[colnames(abc_q3df) == &quot;my_letters&quot;] =&quot;my_LETTERS&quot;
 print(abc_q3df)</code></pre>
 <pre><code>##     my_unifs my_LETTERS
-## 16 7.9890882          a
-## 17 5.2334139          b
-## 24 8.1844931          c
-## 20 5.0904776          d
-## 5  0.9178711          e
-## 21 7.3880741          f
-## 3  6.5554957          g
-## 22 1.3064062          h
-## 4         NA          i
-## 2  6.3701594          j
-## 26 6.0449919          k
-## 9  2.5952435          l
-## 18 3.8145436          m
-## 1         NA          n
-## 11 2.5908999          o
-## 15 0.3300302          p
-## 23 5.7973244          q
-## 14 2.7592931          r
-## 25        NA          s
-## 13 4.5696534          t
-## 19 9.9727323          u
-## 8  8.8907363          v
-## 6  3.4575802          w
-## 12 0.7587229          x
-## 7         NA          y
-## 10 6.6511132          z</code></pre>
+## 13 2.4737594          a
+## 8  7.6602072          b
+## 14 3.1805653          c
+## 5  2.6376054          d
+## 24 9.3383956          e
+## 2  6.6569195          f
+## 17 5.2879537          g
+## 16 0.3052338          h
+## 25        NA          i
+## 15 6.7551052          j
+## 22 9.2317141          k
+## 1         NA          l
+## 18 7.7067983          m
+## 4         NA          n
+## 20 3.0676173          o
+## 9  9.9535790          p
+## 10 7.6121371          q
+## 12 5.7398298          r
+## 23 6.3305437          s
+## 3  8.8780448          t
+## 6  1.0159374          u
+## 26 1.3030883          v
+## 21 2.0202329          w
+## 7         NA          x
+## 19 2.7630060          y
+## 11 4.4342669          z</code></pre>
 </div>
 
 
