@@ -6,6 +6,7 @@ output: html_document
 ---
 #### Question 1: Assign to the variable n_dims a single random integer between 3 and 10
 ```{r}
+set.seed(1)
 n_dims<-sample(3:10,1)
 print(n_dims)
 ```
@@ -32,13 +33,13 @@ t(m)
 #### e: calculate the sum and the mean of the elements in the first row and then the last row.
 ```{r}
 mdataframe<-data.frame(m)
-print(m)
+print(mdataframe)
 
-rowSums(mdataframe[1,])
-rowSums(mdataframe[5,])
+rowSums(mdataframe[1,]) 
+rowSums(mdataframe[3,])
 
 rowMeans(mdataframe[1,])
-rowMeans(mdataframe[5,])
+rowMeans(mdataframe[3,])
 ```
 #### f: set your code up so you can re-run it to create a matrix of a different size by only changing the n_dims value
 
