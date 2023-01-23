@@ -2,11 +2,18 @@
 title: "Assignment 1"
 author: "Abigail Griffin"
 date: "`r Sys.Date()`"
-output: html_document
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
 ---
-git status
-git add -A
-git commit -am "note"
-git push
+## Daily Assignment 1  
+#### How to push to GitHub:  
+1. git status  
+2. git add -A  
+3. git status  
+4. git commit -am "note"  
+5. git push  
 
-`## this is where I can put anything`
+
+`## this is where I can put anything...I can fence text using these tic marks.`. 

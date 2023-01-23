@@ -2,10 +2,14 @@
 title: "Assignment3"
 author: "Abigail Griffin"
 date: "`r Sys.Date()`"
-output: html_document
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
 ---
-### This is question 1:
-#### a.  
+## Daily Assignment 3
+### 1: Suppose x = 1.1, a = 2.2, and b = 3.3. Assign each expression to the variable z and print the value stored in each z.  
+#### a. `x^a^b`   
 ```{r}
 x<-1.1
 a<-2.2
@@ -17,8 +21,7 @@ square<-function(z=NULL){
 square(z=x)
 ```
 
-
-#### b.  
+#### b. (x^a^)^b^     
 ```{r}
 x<-1.1
 a<-2.2
@@ -30,28 +33,28 @@ square<-function(z=NULL){
 square(z=x)
 ```
 
-#### c.  
+#### c. 3x^3^+2x^2^+1      
 ```{r}
 x<-1.1
 z<-3*(x^3)+2*(x^2)+1
 print (z)
 ```
 
-### This is question 2:
+### 2: Using the rep and seq functions, create the following vectors:  
 #### a: (1,2,3,4,5,6,7,8,7,6,5,4,3,2,1)   
 ```{r}
-c((seq(from=1, to=8)), (seq(from=7, to=1)))
+c((seq(from=1, to=8)), (seq(from=7, to=1))) # combine these values into a list
 ```
 #### b: (1,2,2,3,3,3,4,4,4,4,5,5,5,5,5)  
 ```{r}
-rep(1:5, 1:5)
+rep(1:5, 1:5) # repeat 1-5 in increasing increments (+1) until 5
 ```
 #### c: (5,4,4,3,3,3,2,2,2,2,1,1,1,1,1)   
 ```{r}
-rep(5:1, 1:5)
+rep(5:1, 1:5) 
 ```
 
-### This is question 3:
+### 3: Create a vector using the code: `queue <- c("sheep", "fox", "owl", "ant")`, where queue represents the animals that are lined up to enter an exclusive club, with the sheep at the front of the line. Using R expressions, update `queue` as:  
 #### a: the serpent arrives and gets in the back of the line  
 ```{r}
 queue <- c("sheep", "fox", "owl", "ant")
@@ -60,13 +63,13 @@ print (queue)
 ```
 #### b: the sheep enters the club (so disappears from the line)  
 ```{r}
-queue<-c(queue[-1])
+queue<-c(queue[-1]) # remove the first element of the queue
 print(queue)
 ```
 
 #### c: the donkey arrives and talks his way to the front of the line  
 ```{r}
-queue<-c("donkey", queue[1:4])
+queue<-c("donkey", queue[1:4]) # add this element to the first position of my queue
 print(queue)
 ```
 
@@ -78,13 +81,13 @@ print(queue)
 
 #### e: the aphid arrives and the ant invites him to cut in line (hint: check out the append function)  
 ```{r}
-queue<-append(queue, "aphid", after=3)
+queue<-append(queue, "aphid", after=3) # append aphid immediately after position 3
 print(queue)
 ```
 
 #### f: Finally, determine the position of the aphid in the line (hint: use the which function).  
 ```{r}
-which(queue=="aphid")
+which(queue=="aphid") # asks which position is the aphid in my queue?
 ```
 
 

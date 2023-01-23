@@ -1,0 +1,61 @@
+---
+title: "Weekly Assignment 01-17-2023"
+author: "Abigail Griffin"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+---
+## Weekly Assignment 1: How to set up a GitHub web page    
+### Part 1: Download Git   
+1. First, download XCode Command Line Tools [here](https://developer.apple.com/download/all/). If your computer is updated, you should download Command Line Tools for XCode 14.2. (*Troubleshooting tip*: If this doesn't work, you can download XCode from the App Store, but beware that it is a large file which takes ample time to download). These tools allow for the download and use of Git in R.   
+2. Next, navigate [here](https://git-scm.com/downloads) to download Git.
+  + Git is what's known as a **version control** system, which means it can track changes in files. Version control keeps (and therefore can restore) past versions of files.
+  + It was initially developed for programmers collaborating. The best files for version control include plain text (.txt), .R scripts, Markdown (.md/Rmd), html, and LaTex.
+  + "Bad" files include: PDFs, video/photos, and Word docs, due to the fact that changes cannot be tracked (e.g. in PDFs) or they are already have their own version control systems (e.g. in Word)      
+3. Select your operating system. Assuming you are using Mac, you will have to install homebrew, a software which manages packages in R. To do this, open the Mac Terminal in order to speak directly to your computer. Click `command + space bar` to open your Spotlight Search and type "Terminal".   
+![What terminal should look like](images/pt1step3.png){width=50%}    
+3. Once Terminal is open, paste this code in: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`. It will prompt you to enter a password (*but* know it will not populate, so type it and click enter). Terminal will tell you if it is successfully installed.  
+4. **Type** `brew install git` into Terminal. To check if Git is successfully installed, *File*->*New Project*->*New Directory*->*New Project*. If Git is installed, you should see the "Create a git repository" check box below the second line:
+![](images/pt1step4.png){width=50%}    
+   + *Troubleshooting tip*: if homebrew says it is installed but Git is not working, you may have to enter three commands into Terminal, as explained [here](https://www.youtube.com/watch?v=SOjSNB7F2m4))   
+5. Name your directory and create it as a subdirectory of /Users/yourusername/Desktop. Don't forget to select "create a git repository"!
+  + This directory is the location on your computer where files will be placed default.   
+
+### Part 2: Create a GitHub repository  
+1. **GitHub** is a free remote website used for public storage of projects. First, **go to github.com** and click **"Sign Up"** in the upper right hand corner. Follow the steps to create an account. Then, **sign in** using your login credentials.    
+2. Once signed into your GitHub account, click the **plus icon** next to your profile icon, again in the upper right corner.  
+3. Now that we have our account, we can create our repository, which will contain all of your project files and each files' change history. On the dropdown menu, select **"New repository"**. Our goal here is to link RStudio to GitHub.   
+![](images/pt2step3.png){width=50%}   
+4. You can **name** your repository "TrialRepo". Add something like "This is a trial repo as I learn how to use GitHub" to the **Description**. Make the repo **public**, select **"Add a README file"**, leave **gitignore: none**, and **add a MIT License** (this license ensures that no one can monetize your repo).   
+![](images/pt2step4.png){width=50%}    
+5. Click on your **profile picture** in the upper right corner to view a dropdown menu, then **select Settings**->**< > Developer Settings** (the last option in the left panel) ->**Personal Access Tokens**-> **Tokens (classic)** -> **Generate new (classic)** -> add a **Note** (what this token is for): e.g. BIOL1007A -> add **Custom Expiration Date** of 12/31/23 -> check **repo** -> **Create Repository**. Copy your PAT and save it in a safe place or email it to yourself.    
+![](images/pt2step51.png){width=50%}     
+![](images/pt2step5.png){width=50%}    
+6. Navigate to your repo and click **< > Code**, then copy the HTTPS.  
+![](images/pt2step6.png){width=35%}  
+7. **File**->**New project**->**Version control**->**Git**->**Paste** the HTTPS into Clone Git Repository on RStudio. The project directory name must be the same as your repo name (so put "TrialRepo"). Place it on your desktop and **Create Project**.   
+![](images/pt2step7.png){width=40%}   
+
+### Part 3: Create an index file
+1. Now we'll create an index file which is how GitHub recognizes a file as a homepage. On RStudio, **click the icon** in the upper left corner that looks like a document with a green plus over it:    
+![](images/pt3step1.png){width=25%}  
+2. **Select RMarkdown**-> **Title: "My Test Web Page"**.  
+3. **Save** index.rmd in Trial Repo folder.   
+4. **Knit** this page to HTML to render and preview the homepage of your webpage!   
+
+### Part 4: Upload your webpage to Git  
+1. In your Rstudio console, **type** `git status`. This will tell you if you're up to date with what is on GitHub. We want to make sure that what we see on our local repository is what we see on Git.  
+2. Next, **type** `git add -A` to add all the changes to Git.  
+3. **Enter** `git status` again.  
+4. To **commit changes**, type `git commit -am 'create index file'`. Note that in "-am", a stands for "all" and m for "message". You can add any note describing what you did between the ''.  
+5. Finally, **push to GitHub** to get this off just your local computer: `git push`. If it asks for a password, put in your PAT.  
+(**Troubleshooting tip**: install a credentials package in the Console: 1. *Enter* `install.packages"credentials"` 2. **Then** `credentials: :set_github_pat("PUT PAT HERE")`).  
+
+### Part 5: Make it a webpage  
+1. **Navigate**  to **Settings** on your GitHub repository. Go to **Pages** on the left side column -> **Branch: main** -> **Save**.  
+![](images/pt4step1.png){width=50%}   
+![](images/pt4step2.png){width=50%}   
+2. After a couple minutes, **test** if your webpage is live by searching yourusername.github.io/RepoName (e.g. abbygriffin4.github.io/TrialRepo). **CONGRATULATIONS! You have now created your GitHub web page in RStudio!!**   
+![](https://media.giphy.com/media/DhstvI3zZ598Nb1rFf/giphy-downsized-large.gif)     

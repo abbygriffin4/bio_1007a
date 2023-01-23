@@ -2,16 +2,45 @@
 title: 'Weekly Assignment #2'
 author: "Abigail Griffin"
 date: '`r Sys.Date()`'
-output: html_document
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
 ---
-#### Question 1: Create a function that returns a data frame with 2 columns (named “Type” and “Value”) and 50 rows/observations.
+## Weekly Assignment #2 - not completed yet
+
+### 1: Create a function that returns a data frame with 2 columns (named “Type” and “Value”) and 50 rows/observations.
   + The first column should have “Control” as the first 25 observations and “Treatment” as the second half of observations.
-  + The second column should have the first 25 values as random and normally distributed with a mean of 10 and standard deviation of 1.5. The next 25 values of the second column should be random and normally distributed with a mean of 45 and standard deviation of 2.
-  + You can do this all as a single line of code in the function or by breaking it up into multiple code blocks.
-  + Save your new function’s output as a variable, and use a function to view the first 6 rows of the data frame.
+  + The second column should have the first 25 values as random and normally distributed with a mean of 10 and standard deviation of 1.5. The next 25 values of the second column should be random and normally distributed with a mean of 45 and standard deviation of 2. You can do this all as a single line of code in the function or by breaking it up into multiple code blocks.
 ```{r}
-p
+set.seed(20) # set.seed to prevent new randomized data with each rerun
+df_func<-function(means=c(10,45),sds=c(1.5,2)){
+Type<-rep(c("Treatment", "Control"), each=25) # create first column with 25 lines of both treatment and control
+Value<-c(rnorm(n=25, mean=means[1], sd=sds[1]),(rnorm(n=25, mean=means[2], sd=sds[2]))) # create second column with random values
+
+typevalue_df<-data.frame(Type, Value, stringsAsFactors = FALSE) # create df with "Type" and "Value" columns
+return(typevalue_df) # return df please
+}
+df_func()
+```
+#### Save your new function’s output as a variable, and use a function to view the first 6 rows of the data frame.
+```{r}
+q1df<-df_func() # save function output as variable 
+head(q1df, 6) # print first 6 rows of df
 ```
 
-###### b: Let’s say you would like to know whether there is a statistically significant difference in “Value” (response variable y) depending on “Type” (explanatory variable x). Type ?aov in the console to determine how to run an analysis of variance (ANOVA) on your simulated data. Write a line of code that displays a summary of your ANOVA.
-  + Finally create a function that uses a data frame as its input and returns only the p-value of an ANOVA summary table (feel free to use Google/Stack Overflow). Write your code in such a way that you can use any simulated data set with two columns as the function’s argument.
+#### Let’s say you would like to know whether there is a statistically significant difference in “Value” (response variable y) depending on “Type” (explanatory variable x). Type ?aov in the console to determine how to run an analysis of variance (ANOVA) on your simulated data. Write a line of code that displays a summary of your ANOVA.
+```{r}
+ANOVA_Test<-aov(Value ~ Type, data=q1df) # perform ANOVA to test for significance between response variable Y "Value" and explanatory variable x "Type"
+summary(ANOVA_Test) # produce summary of ANOVA results
+```
+
+#### Finally create a function that uses a data frame as its input and returns only the p-value of an ANOVA summary table (feel free to use Google/Stack Overflow). Write your code in such a way that you can use any simulated data set with two columns as the function’s argument.
+```{r}
+pvalue_func<-function(data=ANOVA_Test){ # use data from my ANOVA test
+  p<-summary(ANOVA_Test)[[1]][["Pr(>F)"]][1] # extract the first element in the first compartment named "Pr(>F)" (the p value)
+  return(p) # return p value please
+}
+pvalue_func()
+```
+

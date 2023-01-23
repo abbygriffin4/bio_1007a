@@ -2,16 +2,21 @@
 title: "Assignment 4"
 author: "Abigail Griffin"
 date: "`r Sys.Date()`"
-output: html_document
+output: 
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
 ---
-#### Question 1: Assign to the variable n_dims a single random integer between 3 and 10
+## Daily Assignment 4
+
+### 1: Assign to the variable n_dims a single random integer between 3 and 10
 ```{r}
 set.seed(1)
 n_dims<-sample(3:10,1)
 print(n_dims)
 ```
 
-###### a: Create a vector of consecutive integers from 1 to n_dims^2^.
+#### a: Create a vector of consecutive integers from 1 to n_dims^2^.
 ```{r}
 vector<-seq(1:n_dims^2)
 print(vector)
@@ -36,11 +41,9 @@ mdataframe<-data.frame(m)
 print(mdataframe)
 
 rowSums(mdataframe[1,]) 
-rowSums(mdataframe[3,])
+rowSums(mdataframe[n_dims,])
 
 rowMeans(mdataframe[1,])
-rowMeans(mdataframe[3,])
+rowMeans(mdataframe[n_dims,])
 ```
 #### f: set your code up so you can re-run it to create a matrix of a different size by only changing the n_dims value
-
-

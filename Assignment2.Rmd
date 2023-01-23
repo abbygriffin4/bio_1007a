@@ -1,10 +1,17 @@
 ---
-title: "Assignment2"
+title: "Assignment 2"
 author: "Abigail Griffin"
 date: "`r Sys.Date()`"
-output: html_document
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
 ---
-happy dog: ![](images/happydog.jpeg)
+## Daily Assignment 2
+
+Look at this happy dog: ![](images/happydog.jpeg)
+
+#### Let's make a table...  
 
 Table Header  | Second Header  | Third Header  
 ------------- | -------------  |-------------
@@ -16,19 +23,19 @@ Table Header  | Second Header  | Third Header
     
 Hello and *welcome to my website*. My name is **Abby** and I am a student in *Reproducible Biology in R*, a J-term course taught by **Prof. Ash** in *Winter 2023*. We are currently learning  **GitHub** and **Rmarkdown**.
 
-## Here is a bulleted list
+#### Here is a bulleted list
 * it is cold out today  
     + rumor has it it will snow this weekend  
 * my favorite color is green  
-    + or purple  
+    + purple is a close second  
 
 
-## What are the 3 best icecream flavors?
+#### What are the 3 best icecream flavors?
 1. mint chocolate chip
     + in a sugar cone
 2. black raspberry
     + with rainbow sprinkles
-3. moose tracks
+3. moose tracks  
 
 
 [Check out today's news](https://nytimes.com)
