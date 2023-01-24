@@ -62,10 +62,10 @@ sum(3,2) # sum
 sd
 
 ## User-defined functions
-functionName<-function(argX=defaultX,argY=defaultY){
+functionName<-function(argumentX=defaultX,argY=defaultY){
   # curly bracket starts the body of the function
   # lines of R code and notes
-  # create local variables (only `visble` to R within the function)- if you say x<-1 in here, you can't pull x outside of the function
+  # create local variables (only `visible` to R within the function)- if you say x<-1 in here, you can't pull x outside of the function
   # return (z) - makes the variable part of the global envt
   # whatever you specify up there^, you use down here in the function e.g
   # argX<-c("IDK")

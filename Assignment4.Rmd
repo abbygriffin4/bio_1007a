@@ -23,11 +23,11 @@ print(vector)
 ```
 #### b: Use the sample function to randomly reshuffle these values.
 ```{r}
-sample(vector)
+randomvector <- sample(vector)
 ```
 #### c: create a square matrix with these elements. Print out the matrix.
 ```{r}
-m<-matrix(data=vector, ncol=n_dims)
+m<-matrix(data=randomvector, ncol=n_dims)
 print(m)
 ```
 

@@ -1,0 +1,155 @@
+---
+title: "Entering the tidyverse 01-23-2023"
+author: "Abigail Griffin"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+---
+## Entering the tidyverse
+January 17 2023. 
+AGG. 
+
+* **tidyverse**: collection of packages that share philosophy, grammar (or how the code is structured), and data structures. More intuitive  
+* **operators**: symbols that tell R to perform different operations (between variables, functions, etc.)  
++ e.g. arithmetic operators: + , - , *, /, ^, ~  
++ assignment operators: <- (how we create all variables)  
++ logical operators: !, &, | (or)
++ relational operators: ==, != (does not equal), >, <, >= (greater than or equal to), <=
++ today we will learn about miscellaneous operators: %>% (forward pipe operators), %in%
+
+### Tidyverse
+* Today we will be installing the tidyverse packages. You only need to install packages once. First `install.packages("tidyverse)` then `library(tidyverse)`
+* library(tidyverse) loads in packages
+* **dplyr**: new(er) packages provides a set of tools for manipulating data sets.  
++ specifically written to be fast  
++ individual functions that correspond to common operations
+* , (comma) = both of these conditions have to be met for this to be filtered
+* & (ampersand) = multiple conditions can be met
+* | (line) = *or*
+
+* 5 core verbs:
++ `filter()`: 
++ `arrange()`:
++ `select()`:
++ `groupby()` and `summarize()`:
++ `mutate()`:
+* **Built in data set**
+```{r eval=FALSE}
+library(tidyverse)
+library(dplyr)
+data(starwars)
+glimpse(starwars)
+class(starwars)
+```
++ **Tibble**: modern take on data frames. Keeps great aspects of df's and drops frustrating ones (change variables)
+* If we want to clean up data:  
++ Check for NA's
+```{r eval=FALSE}
+anyNA(starwars) # are there any NA's? returns a logical # is.na #complete.cases
+starwarsClean<-starwars[complete.cases(starwars[, 1:10]),] # removes all rows with NAs in all rows, the first 10 columns # second comma says give me all columns back
+# anyNA(starwarsClean[,1:10]) # we have completely removed all NA's in first 10 columns
+```
+* use `**filter()**`: picks/subsets observations (ROWS) by their values
+```{r eval=FALSE}
+filter(starwarsClean, gender=="masculine" & height < 180) # can replace & (ampersand) with a comma which means and - both of these conditions have to be met for this to be filtered
+filter(starwarsClean, gender=="masculine" , height < 180 , height > 100) # multiple conditions for the same variable
+filter(starwarsClean, gender=="masculine" | gender=="feminine") # gender is masculine or feminine
+```
+* now working with `%in%` operator, a matching operator. Similar to the `==` but you can compare vectors of different length (can't do with `==`)
+```{r eval=FALSE}
+a<-LETTERS[1:10]
+length(a) # how many elements are in this vector
+
+#output of %in% depends of first vector
+# a %in% b
+# b %in% a
+```
+* use `%in%` to subset
+```{r eval=FALSE}
+eyes<-filter(starwars, eye_color %in% c("blue", "brown")) # subsetting characters with these eye colors
+view(eyes) # opens up table in another tab
+eyes2<-filter(starwars, eye_color == "blue" | eye_color == "brown")
+view(eyes2)
+```
+* `arrange()`: reorders rows
+```{r eval=FALSE}
+sw<-arrange(starwarsClean, by=height) # arranges the whole data frame by the variable you specify
+```
+* can also use helper function `desc()`
+```{r eval=FALSE}
+arrange(starwarsClean, by=desc(height)) # arrange in descending order
+```
+* put in additional conditions
+```{r eval=FALSE}
+tail(sw) # missing values are added to the end ??
+```
+* `select()`: chooses variables (COLUMNS) by their names
+```{r eval=FALSE}
+select(starwarsClean, 1:10)
+select(starwarsClean)
+select(starwarsClean, name: species) # ??
+select(starwarsClean, -(films:starships))
+starwarsClean[,1:11]
+```
+* `everything()`: rearrange columns. a helper function that is useful if you have a couple variables that you want to move to the beginning
+```{r eval=FALSE}
+select(starwarsClean, name, gender, species, everything()) # reorders this but doesn't keep it reordered.
+```
+* `contains()`: another helper function
+```{r eval=FALSE}
+select(starwarsClean, contains ("color")) # others include: ends_with(), starts with(), num_range()
+```
+* `select()` can also rename columns
+```{r eval=FALSE}
+select(starwarsClean, haircolor=hair_color) # returns only renamed column
+rename(starwarsClean, haircolor=hair_color) # returns whole data set
+```
+* `mutate()`: creates new variables using functions of existing variables
+* let's create a new column that is height divided by mass
+```{r eval=FALSE}
+mutate(starwarsClean, ratio=height/mass)
+starwars_lbs<-mutate(starwarsClean, mass_lbs=mass*2.2)
+starwars_lbs<-select(starwars_lbs, 1:3, mass_lbs, everything()) # everything() is everything else. brought it to the front using select
+glimpse(starwars_lbs)
+```
+* `transmute()`:
+```{r eval=FALSE}
+transmute(starwarsClean, mass_lbs=mass*2.2) # only returns mutated columns
+transmute(starwarsClean, mass, mass_lbs=mass*2.2, height)
+```
+* `group_by()` and `summarize()`
+```{r eval=FALSE}
+summarize(starwarsClean, meanHeight=mean(height)) # throws NA if any NAs are in df - need to use na.rm
+summarize(starwarsClean, meanHeight=mean(height), TotalNumber=n())
+```
+* use `group_by()` for maximum usefulness
+```{r eval=FALSE}
+starwarsGenders<-group_by(starwars, gender)
+head(starwarsGenders) # lets you view first 6 rows, can also do head(starwarsGender, 10) to see first 10. Can also use tail(starwarsGender) to see last 6
+
+summarize(starwarsGenders, meanHeight=mean(height, na.rm=TRUE), TotalNumber=n()) # TotalNumber=n() counts how many belong to each group
+```
+
+#### Piping `%>%`
+* **piping** is used to emphasize a sequence of actions
+* allows you to pass an intermediate result onto the next function (uses output of one function as input of the next)
+* avoid if you need to manipulate more than one object/variable at a time or if a variable is meaningful
+* formatting: should always have a space before the `%>%` followed by a new line
+```{r eval=FALSE}
+starwarsClean %>%
+  group_by(gender) %>%
+  summarize(meanHeight=mean(height, na.rm = TRUE, TotalNumber=n()))
+# na.rm=TRUE removes NAs
+# this data frame acts as %>% input
+ # of this function
+# much cleaner with piping!
+```
+* `case_when()`: is useful for multiple if/ifelse statements
+```{r eval=FALSE}
+starwarsClean %>%
+  mutate(sp=case_when(species=="Human"~"Human", TRUE~"Non-Human"))
+# if species = Human, put Human. Tilda tells what to put. If species is not true, put Non-Human.
+# uses condition, puts "Human" if True in sp column, puts "Non-Human" if it's FALSE
+```

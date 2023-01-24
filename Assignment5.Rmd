@@ -79,12 +79,12 @@ q3df[is.na(q3df$my_unifs),] # tell me which rows have NA values
    + re-order the entire data frame to arrange the second variable in alphabetical order.
 
 ```{r}
-abc_q3df<-q3df[order(q3df$my_letters), ] # now alphabetize this vector
+abc_q3df<-q3df[order(q3df$my_letters), ] # now alphabetize this vector # descending=TRUE would flip the way it ordered it
 print(abc_q3df)
 ```
    + calculate the column mean for the first variable.
 ```{r}
-mean(abc_q3df$my_unifs, na.rm=TRUE) # what is the mean of the first variable?
+mean(abc_q3df$my_unifs, na.rm=TRUE) # what is the mean of the first variable? # na.rm=TRUE removes the NA's before it calculates the mean
 ```
    + rename the second column ‘my_LETTERS’
 ```{r}
