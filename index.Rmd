@@ -14,15 +14,15 @@ output:
 ![](images/indexpics/penny.jpeg){width=50%}  
 </center>
 
-My name is Abby Griffin and I am a student in Reproducible Biology in R, a Winter Term course at Middlebury College. I am a member of the class of 2023 studying Neuroscience and Sociology. Outside of class, I work as a barista and love running alongside my dog Penny, biking, and skiing.
+My name is Abby Griffin (she/her) and I am a student in Reproducible Biology in R, a Winter Term course at Middlebury College taught by Professor Ash. I am a member of the class of 2023 studying Neuroscience and Sociology. This semester we are learning the basics of reproducible coding in R and RStudio as well as how to answer scientific questions using statistics, create publication-quality figures, and manage shareable documents. Click around and see what we've been up to!
 
 ## Assignments
 [Assignment 1](Assignment1.html)   
 [Assignment 2](Assignment2.html)     
 [Assignment 3](Assignment3.html)   
 [Assignment 4](Assignment4.html)    
-[Assignment 5](Assignment5.html)
-[Assignment 6](Assignment6.html)
+[Assignment 5](Assignment5.html)  
+[Assignment 6](Assignment6.html)  
 
 ## Weekly Assignments
 [Weekly Assignment #1](WeeklyAssignment1.html)  
