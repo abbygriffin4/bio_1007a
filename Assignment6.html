@@ -12,9 +12,9 @@
 
 <meta name="author" content="Abigail Griffin" />
 
-<meta name="date" content="2023-01-24" />
+<meta name="date" content="2023-01-23" />
 
-<title>Entering the tidyverse 01-23-2023</title>
+<title>Assignment6</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -149,9 +149,9 @@ code span.ot { color: #007020; }
 
 <header>
 <div class="inner">
-<h1 class="title toc-ignore">Entering the tidyverse 01-23-2023</h1>
+<h1 class="title toc-ignore">Assignment6</h1>
 <h3 class="author">Abigail Griffin</h3>
-<h3 class="date">2023-01-24</h3>
+<h3 class="date">2023-01-23</h3>
 </div>
 </header>
 
@@ -160,183 +160,180 @@ code span.ot { color: #007020; }
 <div id="content-wrapper">
   <div class="inner clearfix">
     <section id="main-content">
-<div id="entering-the-tidyverse" class="section level2">
-<h2>Entering the tidyverse</h2>
-<p>January 23 2023<br />
-AGG</p>
-<ul>
-<li><strong>tidyverse</strong>: collection of packages that share
-philosophy, grammar (or how the code is structured), and data
-structures. More intuitive<br />
-</li>
-<li><strong>operators</strong>: symbols that tell R to perform different
-operations (between variables, functions, etc.)<br />
-</li>
-<li>e.g. arithmetic operators: + , - , *, /, ^, ~<br />
-</li>
-<li>assignment operators: &lt;- (how we create all variables)<br />
-</li>
-<li>logical operators: !, &amp;, | (or)</li>
-<li>relational operators: ==, != (does not equal), &gt;, &lt;, &gt;=
-(greater than or equal to), &lt;=</li>
-<li>today we will learn about miscellaneous operators: %&gt;% (forward
-pipe operators), %in%</li>
-</ul>
-<div id="tidyverse" class="section level3">
-<h3>Tidyverse</h3>
-<ul>
-<li>Today we will be installing the tidyverse packages. You only need to
-install packages once. First <code>install.packages(&quot;tidyverse)</code>
-then <code>library(tidyverse)</code></li>
-<li>library(tidyverse) loads in packages</li>
-<li><strong>dplyr</strong>: new(er) packages provides a set of tools for
-manipulating data sets.<br />
-</li>
-<li>specifically written to be fast<br />
-</li>
-<li>individual functions that correspond to common operations</li>
-<li>, (comma) = both of these conditions have to be met for this to be
-filtered</li>
-<li>&amp; (ampersand) = multiple conditions can be met</li>
-<li><div class="line-block">(line) = <em>or</em></div></li>
-<li>5 core verbs:</li>
-<li><code>filter()</code>:</li>
-<li><code>arrange()</code>:</li>
-<li><code>select()</code>:</li>
-<li><code>groupby()</code> and <code>summarize()</code>:</li>
-<li><code>mutate()</code>:</li>
-<li><strong>Built in data set</strong></li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(starwars)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(starwars)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(starwars)</span></code></pre></div>
-<ul>
-<li><strong>Tibble</strong>: modern take on data frames. Keeps great
-aspects of df’s and drops frustrating ones (change variables)</li>
-<li>If we want to clean up data:<br />
-</li>
-<li>Check for NA’s</li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anyNA</span>(starwars) <span class="co"># are there any NA&#39;s? returns a logical # is.na #complete.cases</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>starwarsClean<span class="ot">&lt;-</span>starwars[<span class="fu">complete.cases</span>(starwars[, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]),] <span class="co"># removes all rows with NAs in all rows, the first 10 columns # second comma says give me all columns back</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># anyNA(starwarsClean[,1:10]) # we have completely removed all NA&#39;s in first 10 columns</span></span></code></pre></div>
-<ul>
-<li>use <code>**filter()**</code>: picks/subsets observations (ROWS) by
-their values</li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(starwarsClean, gender<span class="sc">==</span><span class="st">&quot;masculine&quot;</span> <span class="sc">&amp;</span> height <span class="sc">&lt;</span> <span class="dv">180</span>) <span class="co"># can replace &amp; (ampersand) with a comma which means and - both of these conditions have to be met for this to be filtered</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(starwarsClean, gender<span class="sc">==</span><span class="st">&quot;masculine&quot;</span> , height <span class="sc">&lt;</span> <span class="dv">180</span> , height <span class="sc">&gt;</span> <span class="dv">100</span>) <span class="co"># multiple conditions for the same variable</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(starwarsClean, gender<span class="sc">==</span><span class="st">&quot;masculine&quot;</span> <span class="sc">|</span> gender<span class="sc">==</span><span class="st">&quot;feminine&quot;</span>) <span class="co"># gender is masculine or feminine</span></span></code></pre></div>
-<ul>
-<li>now working with <code>%in%</code> operator, a matching operator.
-Similar to the <code>==</code> but you can compare vectors of different
-length (can’t do with <code>==</code>)</li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>a<span class="ot">&lt;-</span>LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(a) <span class="co"># how many elements are in this vector</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#output of %in% depends of first vector</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># a %in% b</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># b %in% a</span></span></code></pre></div>
-<ul>
-<li>use <code>%in%</code> to subset</li>
-</ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>eyes<span class="ot">&lt;-</span><span class="fu">filter</span>(starwars, eye_color <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;brown&quot;</span>)) <span class="co"># subsetting characters with these eye colors</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(eyes) <span class="co"># opens up table in another tab</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>eyes2<span class="ot">&lt;-</span><span class="fu">filter</span>(starwars, eye_color <span class="sc">==</span> <span class="st">&quot;blue&quot;</span> <span class="sc">|</span> eye_color <span class="sc">==</span> <span class="st">&quot;brown&quot;</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(eyes2)</span></code></pre></div>
-<ul>
-<li><code>arrange()</code>: reorders rows</li>
-</ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sw<span class="ot">&lt;-</span><span class="fu">arrange</span>(starwarsClean, <span class="at">by=</span>height) <span class="co"># arranges the whole data frame by the variable you specify</span></span></code></pre></div>
-<ul>
-<li>can also use helper function <code>desc()</code></li>
-</ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(starwarsClean, <span class="at">by=</span><span class="fu">desc</span>(height)) <span class="co"># arrange in descending order</span></span></code></pre></div>
-<ul>
-<li>put in additional conditions</li>
-</ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(sw) <span class="co"># missing values are added to the end ??</span></span></code></pre></div>
-<ul>
-<li><code>select()</code>: chooses variables (COLUMNS) by their
-names</li>
-</ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(starwarsClean, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(starwarsClean)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(starwarsClean, name<span class="sc">:</span> species) <span class="co"># ??</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(starwarsClean, <span class="sc">-</span>(films<span class="sc">:</span>starships))</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>starwarsClean[,<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>]</span></code></pre></div>
-<ul>
-<li><code>everything()</code>: rearrange columns. a helper function that
-is useful if you have a couple variables that you want to move to the
-beginning</li>
-</ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(starwarsClean, name, gender, species, <span class="fu">everything</span>()) <span class="co"># reorders this but doesn&#39;t keep it reordered.</span></span></code></pre></div>
-<ul>
-<li><code>contains()</code>: another helper function</li>
-</ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(starwarsClean, <span class="fu">contains</span> (<span class="st">&quot;color&quot;</span>)) <span class="co"># others include: ends_with(), starts with(), num_range()</span></span></code></pre></div>
-<ul>
-<li><code>select()</code> can also rename columns</li>
-</ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(starwarsClean, <span class="at">haircolor=</span>hair_color) <span class="co"># returns only renamed column</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rename</span>(starwarsClean, <span class="at">haircolor=</span>hair_color) <span class="co"># returns whole data set</span></span></code></pre></div>
-<ul>
-<li><code>mutate()</code>: creates new variables using functions of
-existing variables</li>
-<li>let’s create a new column that is height divided by mass</li>
-</ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(starwarsClean, <span class="at">ratio=</span>height<span class="sc">/</span>mass)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>starwars_lbs<span class="ot">&lt;-</span><span class="fu">mutate</span>(starwarsClean, <span class="at">mass_lbs=</span>mass<span class="sc">*</span><span class="fl">2.2</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>starwars_lbs<span class="ot">&lt;-</span><span class="fu">select</span>(starwars_lbs, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, mass_lbs, <span class="fu">everything</span>()) <span class="co"># everything() is everything else. brought it to the front using select</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(starwars_lbs)</span></code></pre></div>
-<ul>
-<li><code>transmute()</code>:</li>
-</ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">transmute</span>(starwarsClean, <span class="at">mass_lbs=</span>mass<span class="sc">*</span><span class="fl">2.2</span>) <span class="co"># only returns mutated columns</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">transmute</span>(starwarsClean, mass, <span class="at">mass_lbs=</span>mass<span class="sc">*</span><span class="fl">2.2</span>, height)</span></code></pre></div>
-<ul>
-<li><code>group_by()</code> and <code>summarize()</code></li>
-</ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(starwarsClean, <span class="at">meanHeight=</span><span class="fu">mean</span>(height)) <span class="co"># throws NA if any NAs are in df - need to use na.rm</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(starwarsClean, <span class="at">meanHeight=</span><span class="fu">mean</span>(height), <span class="at">TotalNumber=</span><span class="fu">n</span>())</span></code></pre></div>
-<ul>
-<li>use <code>group_by()</code> for maximum usefulness</li>
-</ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>starwarsGenders<span class="ot">&lt;-</span><span class="fu">group_by</span>(starwars, gender)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(starwarsGenders) <span class="co"># lets you view first 6 rows, can also do head(starwarsGender, 10) to see first 10. Can also use tail(starwarsGender) to see last 6</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(starwarsGenders, <span class="at">meanHeight=</span><span class="fu">mean</span>(height, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="at">TotalNumber=</span><span class="fu">n</span>()) <span class="co"># TotalNumber=n() counts how many belong to each group</span></span></code></pre></div>
-<div id="piping" class="section level4">
-<h4>Piping <code>%&gt;%</code></h4>
-<ul>
-<li><strong>piping</strong> is used to emphasize a sequence of
-actions</li>
-<li>allows you to pass an intermediate result onto the next function
-(uses output of one function as input of the next)</li>
-<li>avoid if you need to manipulate more than one object/variable at a
-time or if a variable is meaningful</li>
-<li>formatting: should always have a space before the
-<code>%&gt;%</code> followed by a new line</li>
-</ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>starwarsClean <span class="sc">%&gt;%</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gender) <span class="sc">%&gt;%</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">meanHeight=</span><span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">TotalNumber=</span><span class="fu">n</span>()))</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># na.rm=TRUE removes NAs</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># this data frame acts as %&gt;% input</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a> <span class="co"># of this function</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># much cleaner with piping!</span></span></code></pre></div>
-<ul>
-<li><code>case_when()</code>: is useful for multiple if/ifelse
-statements</li>
-</ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>starwarsClean <span class="sc">%&gt;%</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sp=</span><span class="fu">case_when</span>(species<span class="sc">==</span><span class="st">&quot;Human&quot;</span><span class="sc">~</span><span class="st">&quot;Human&quot;</span>, <span class="cn">TRUE</span><span class="sc">~</span><span class="st">&quot;Non-Human&quot;</span>))</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># if species = Human, put Human. Tilda tells what to put. If species is not true, put Non-Human.</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># uses condition, puts &quot;Human&quot; if True in sp column, puts &quot;Non-Human&quot; if it&#39;s FALSE</span></span></code></pre></div>
+<div id="daily-assignment-6" class="section level2">
+<h2>Daily Assignment 6</h2>
+<div id="data-manipulations-using-the-dplyr-package---use-the-dplyr-and-tidyverse-packages." class="section level3">
+<h3>Data manipulations using the dplyr package - use the dplyr and
+tidyverse packages.</h3>
 </div>
+<div id="examine-the-structure-of-the-iris-data-set.-how-many-observations-and-variables-are-in-the-data-set" class="section level3">
+<h3>1: Examine the structure of the iris data set. How many observations
+and variables are in the data set?</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+## ✔ ggplot2 3.4.0      ✔ purrr   1.0.1 
+## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
+## ✔ tidyr   1.2.1      ✔ stringr 1.5.0 
+## ✔ readr   2.1.3      ✔ forcats 0.5.2 
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(iris) <span class="co"># there are 150 observations (rows) and 5 variables (columns)</span></span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    150 obs. of  5 variables:
+##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(iris)</span></code></pre></div>
+<pre><code>## Rows: 150
+## Columns: 5
+## $ Sepal.Length &lt;dbl&gt; 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.…
+## $ Sepal.Width  &lt;dbl&gt; 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.…
+## $ Petal.Length &lt;dbl&gt; 1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, 1.5, 1.4, 1.5, 1.5, 1.…
+## $ Petal.Width  &lt;dbl&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.…
+## $ Species      &lt;fct&gt; setosa, setosa, setosa, setosa, setosa, setosa, setosa, s…</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris)</span></code></pre></div>
+</div>
+<div id="create-a-new-data-frame-iris1-that-contains-only-the-species-virginica-and-versicolor-with-sepal-lengths-longer-than-6-cm-and-sepal-widths-longer-than-2.5-cm.-how-many-observations-and-variables-are-in-the-data-set" class="section level3">
+<h3>2: Create a new data frame iris1 that contains only the species
+virginica and versicolor with sepal lengths longer than 6 cm and sepal
+widths longer than 2.5 cm. How many observations and variables are in
+the data set?</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>iris1<span class="ot">&lt;-</span><span class="fu">filter</span>(iris, Species<span class="sc">==</span><span class="fu">c</span>(<span class="st">&quot;virginica&quot;</span>, <span class="st">&quot;versicolor&quot;</span>), Sepal.Length<span class="sc">&gt;</span><span class="dv">6</span>, Sepal.Width<span class="sc">&gt;</span><span class="fl">2.5</span>) <span class="co"># filter out according to these variables</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(iris1)</span></code></pre></div>
+<pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+## 1           6.4         3.2          4.5         1.5 versicolor
+## 2           6.1         2.9          4.7         1.4 versicolor
+## 3           6.7         3.1          4.4         1.4 versicolor
+## 4           6.1         2.8          4.0         1.3 versicolor
+## 5           6.1         2.8          4.7         1.2 versicolor
+## 6           6.6         3.0          4.4         1.4 versicolor
+## 7           6.7         3.0          5.0         1.7 versicolor
+## 8           6.1         3.0          4.6         1.4 versicolor
+## 9           6.2         2.9          4.3         1.3 versicolor
+## 10          6.3         3.3          6.0         2.5  virginica
+## 11          7.1         3.0          5.9         2.1  virginica
+## 12          6.5         3.0          5.8         2.2  virginica
+## 13          6.5         3.2          5.1         2.0  virginica
+## 14          6.8         3.0          5.5         2.1  virginica
+## 15          6.5         3.0          5.5         1.8  virginica
+## 16          7.7         2.6          6.9         2.3  virginica
+## 17          6.9         3.2          5.7         2.3  virginica
+## 18          7.7         2.8          6.7         2.0  virginica
+## 19          6.7         3.3          5.7         2.1  virginica
+## 20          6.2         2.8          4.8         1.8  virginica
+## 21          6.4         2.8          5.6         2.1  virginica
+## 22          7.4         2.8          6.1         1.9  virginica
+## 23          6.4         2.8          5.6         2.2  virginica
+## 24          6.1         2.6          5.6         1.4  virginica
+## 25          6.3         3.4          5.6         2.4  virginica
+## 26          6.7         3.1          5.6         2.4  virginica
+## 27          6.7         3.3          5.7         2.5  virginica
+## 28          6.2         3.4          5.4         2.3  virginica</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># There are 28 observations and 5 variables.</span></span></code></pre></div>
+</div>
+<div id="now-create-a-iris2-data-frame-from-iris1-that-contains-only-the-columns-for-species-sepal.length-and-sepal.width.-how-many-observations-and-variables-are-in-the-data-set" class="section level3">
+<h3>3: Now, create a iris2 data frame from iris1 that contains only the
+columns for Species, Sepal.Length, and Sepal.Width. How many
+observations and variables are in the data set?</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>iris2<span class="ot">&lt;-</span><span class="fu">select</span>(iris1, Species, Sepal.Length, Sepal.Width) <span class="co"># select only these columns from iris1</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(iris2)</span></code></pre></div>
+<pre><code>##       Species Sepal.Length Sepal.Width
+## 1  versicolor          6.4         3.2
+## 2  versicolor          6.1         2.9
+## 3  versicolor          6.7         3.1
+## 4  versicolor          6.1         2.8
+## 5  versicolor          6.1         2.8
+## 6  versicolor          6.6         3.0
+## 7  versicolor          6.7         3.0
+## 8  versicolor          6.1         3.0
+## 9  versicolor          6.2         2.9
+## 10  virginica          6.3         3.3
+## 11  virginica          7.1         3.0
+## 12  virginica          6.5         3.0
+## 13  virginica          6.5         3.2
+## 14  virginica          6.8         3.0
+## 15  virginica          6.5         3.0
+## 16  virginica          7.7         2.6
+## 17  virginica          6.9         3.2
+## 18  virginica          7.7         2.8
+## 19  virginica          6.7         3.3
+## 20  virginica          6.2         2.8
+## 21  virginica          6.4         2.8
+## 22  virginica          7.4         2.8
+## 23  virginica          6.4         2.8
+## 24  virginica          6.1         2.6
+## 25  virginica          6.3         3.4
+## 26  virginica          6.7         3.1
+## 27  virginica          6.7         3.3
+## 28  virginica          6.2         3.4</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># There are 28 observations and 3 variables</span></span></code></pre></div>
+</div>
+<div id="create-an-iris3-data-frame-from-iris2-that-orders-the-observations-from-largest-to-smallest-sepal-length.-show-the-first-6-rows-of-this-data-set." class="section level3">
+<h3>4: Create an iris3 data frame from iris2 that orders the
+observations from largest to smallest sepal length. Show the first 6
+rows of this data set.</h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>iris3<span class="ot">&lt;-</span><span class="fu">arrange</span>(iris2, <span class="at">by=</span><span class="fu">desc</span>(Sepal.Length))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris3)</span></code></pre></div>
+<pre><code>##     Species Sepal.Length Sepal.Width
+## 1 virginica          7.7         2.6
+## 2 virginica          7.7         2.8
+## 3 virginica          7.4         2.8
+## 4 virginica          7.1         3.0
+## 5 virginica          6.9         3.2
+## 6 virginica          6.8         3.0</code></pre>
+</div>
+<div id="create-an-iris4-data-frame-from-iris3-that-creates-a-column-with-a-sepal-area-length-width-value-for-each-observation.-how-many-observations-and-variables-are-in-the-data-set" class="section level3">
+<h3>5: Create an iris4 data frame from iris3 that creates a column with
+a sepal area (length * width) value for each observation. How many
+observations and variables are in the data set?</h3>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>iris4<span class="ot">&lt;-</span><span class="fu">mutate</span>(iris3, <span class="at">Sepal.Area=</span>Sepal.Length<span class="sc">*</span>Sepal.Width) <span class="co"># mutate iris 3 by adding a Sepal.Area column with these conditions</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># There are 28 observations and 4 variables</span></span></code></pre></div>
+</div>
+<div id="create-the-variable-iristab-that-shows-the-average-sepal-length-the-average-sepal-width-and-the-sample-size-of-the-entire-iris4-data-frame-and-print-iristab." class="section level3">
+<h3>6: Create the variable irisTab that shows the average sepal length,
+the average sepal width, and the sample size of the entire iris4 data
+frame and print irisTab.</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>irisTab<span class="ot">&lt;-</span><span class="fu">summarize</span>(iris4, <span class="at">meanSepal.Length=</span><span class="fu">mean</span>(Sepal.Length, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="at">meanSepal.Width=</span><span class="fu">mean</span>(Sepal.Width, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="at">SampleSize=</span><span class="fu">n</span>())</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(irisTab)</span></code></pre></div>
+<pre><code>##   meanSepal.Length meanSepal.Width SampleSize
+## 1            6.575        3.003571         28</code></pre>
+</div>
+<div id="finally-create-iris5-that-calculates-the-average-sepal-length-the-average-sepal-width-and-the-sample-size-for-each-species-of-in-the-iris4-data-frame-and-print-iris5." class="section level3">
+<h3>7: Finally, create iris5 that calculates the average sepal length,
+the average sepal width, and the sample size for each species of in the
+iris4 data frame and print iris5.</h3>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>iris5<span class="ot">&lt;-</span><span class="fu">group_by</span>(iris4, Species)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(iris5, <span class="at">meanSepal.Length=</span><span class="fu">mean</span>(Sepal.Length, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="at">meanSepal.Width=</span><span class="fu">mean</span>(Sepal.Width, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="at">SampleSize=</span><span class="fu">n</span>())</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 4
+##   Species    meanSepal.Length meanSepal.Width SampleSize
+##   &lt;fct&gt;                 &lt;dbl&gt;           &lt;dbl&gt;      &lt;int&gt;
+## 1 versicolor             6.33            2.97          9
+## 2 virginica              6.69            3.02         19</code></pre>
+</div>
+<div id="in-these-exercises-you-have-successively-modified-different-versions-of-the-data-frame-iris1-iris2-iris3-iris4-iris5.-at-each-stage-the-output-data-frame-from-one-operation-serves-as-the-input-for-the-next.-a-more-efficient-way-to-do-this-is-to-use-the-pipe-operator-from-the-tidyr-package.-rework-all-of-your-previous-statements-except-for-iristab-into-an-extended-piping-operation-that-uses-iris-as-the-input-and-generates-irisfinal-as-the-output." class="section level3">
+<h3>8: In these exercises, you have successively modified different
+versions of the data frame iris1 iris2 iris3 iris4 iris5. At each stage,
+the output data frame from one operation serves as the input for the
+next. A more efficient way to do this is to use the pipe operator %&gt;%
+from the tidyr package. Rework all of your previous statements (except
+for irisTab) into an extended piping operation that uses iris as the
+input and generates irisFinal as the output.</h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>pipingfinal<span class="ot">&lt;-</span>iris <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Species<span class="sc">==</span><span class="st">&quot;virginica&quot;</span> <span class="sc">|</span> Species<span class="sc">==</span><span class="st">&quot;versicolor&quot;</span> <span class="sc">&amp;</span> Sepal.Length<span class="sc">&gt;</span><span class="dv">6</span>, Sepal.Width<span class="sc">&gt;</span><span class="fl">2.5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Species, Sepal.Length, Sepal.Width) <span class="sc">%&gt;%</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="at">by=</span><span class="fu">desc</span>(Sepal.Length))</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(iris3) <span class="sc">%&gt;%</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Sepal.Area=</span>Sepal.Length<span class="sc">*</span>Sepal.Width) <span class="sc">%&gt;%</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">meanSepal.Length=</span><span class="fu">mean</span>(Sepal.Length, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="at">meanSepal.Width=</span><span class="fu">mean</span>(Sepal.Width, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="at">SampleSize=</span><span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(pipingfinal)</span></code></pre></div>
 </div>
 </div>
     </section>

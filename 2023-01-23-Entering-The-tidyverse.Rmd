@@ -8,8 +8,8 @@ output:
     highlight: github
 ---
 ## Entering the tidyverse
-January 17 2023. 
-AGG. 
+January 23 2023   
+AGG   
 
 * **tidyverse**: collection of packages that share philosophy, grammar (or how the code is structured), and data structures. More intuitive  
 * **operators**: symbols that tell R to perform different operations (between variables, functions, etc.)  

@@ -1,0 +1,126 @@
+---
+title: "2023-01-24 ggplot2"
+author: "Abigail Griffin"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+---
+## ggplot2
+January 24 2023  
+AGG  
+
+Load libraries.
+```{r}
+library(ggplot2)
+library(ggthemes)
+library(patchwork)
+```
+
+### Template for ggplot code
+```{r eval=FALSE}
+# p1<- ggplot(data=<DATA>, mapping=aes(x=xVar, y=yVar)) +
+# <GEOM FUNCTION> + # geom_boxplot()
+# if you wanted to map on a boxplot with your data
+# print(p1)
+```
+
+### Load in a built-in data set
+```{r}
+d<-mpg
+str(mpg)
+library(dplyr)
+glimpse(d)
+```
+* How to do qplot() (quick plots): for quick plotting, similar to what is in R base package. 
+  + e.g. make a **histogram**  
+```{r}
+qplot(x=d$hwy)
+qplot(x=d$hwy, fill=I("darkblue"), color=I("black"))
+# need to put I before color 
+```
+* Make a **scatter plot**
+```{r eval=FALSE}
+qplot(x=d$displ, y=d$hwy, geom=c("smooth", "point"), method="lm") # method makes it a linear distribution and not just following points
+```
+* Make it a **box plot**
+```{r eval=FALSE}
+qplot(x=d$fl, y=d$cty, geom="boxplot", fill=I("forestgreen"))
+```
+* Make a **basic bar plot**
+```{r eval=FALSE}
+qplot(x=d$fl, geom="bar", fill=I("forestgreen"))
+# don't need y axis for bar plot so skip it
+```
+### Create some data with specified counts
+```{r eval=FALSE}
+x_trt<-c("Control", "Low", "High")
+y_resp<-c(12, 2.5, 22.9)
+qplot(x=x_trt, y=y_resp, geom="col", fill=I(c("forestgreen", "slategray", "goldenrod"))) # will print in alphabetical order
+# uses vectors instead of whole data frame
+```
+* [To find colors click here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf)
+  + google "viridis color palette"
+
+### ggplot: uses dataframes instead of vectors
+```{r}
+p1<-ggplot(data=d, mapping=aes(x=displ, y=cty, color=cyl)) +
+  geom_point()
+p1
+# aes is very important: construct aesthetics mappings
+p1 + theme_base() # changes to what it was when it was base R
+p1 + theme_bw()
+p1 + theme_classic() # removes background
+p1 + theme_linedraw()
+p1 + theme_dark() # adds dark background
+p1 + theme_minimal() # no axis lines
+p1 + theme_economist()
+# google ggplot themes to find more
+```
+* [Find more ggplot themes here](https://ggplot2.tidyverse.org/reference/ggtheme.html)
+* Can do further modifications
+```{r}
+p1 + theme_bw(base_size=30, base_family="serif")
+p2<-ggplot(data=d, aes(x=fl, fill=fl)) +
+  geom_bar()
+p2
+
+p2 + coord_flip() #flips x and y axes
+p2 + coord_flip() + theme_classic(base_size=15, base_family="sans")
+```
+### More theme modifications
+```{r}
+p3<-ggplot(data=d, aes(x=displ, y=cty)) +
+  geom_point(size=7, shape=21, color="magenta", fill="black") +
+  xlab("Count") + # add x axis label
+  ylab("Fuel") +
+  labs(title="My Title Here", subtitle="My subtitle goes here") # can also do x=/y= for axis
+p3
+
+p3 + xlim(1,10) + ylim(0,35) # x is between 1 and 10, y is between 0 and 35
+```
+* Make another **boxplot**
+```{r}
+library(viridis)
+cols<-viridis(7, option = "magma") # takes 7 hex color codes from the viridis color packages. # also plasma, turbo, viridis. # have to give it the same number of colors as you have groups
+ggplot(data=d, aes(x=class,y=hwy, fill=class)) +
+  geom_boxplot() +
+  scale_fill_manual(values=cols)
+```
+
+### Stacking graphs
+```{r eval=FALSE}
+library(patchwork)
+p1+p2+p3 # puts them all next to each other
+p1/p2/p3 # puts them on top of each other
+(p1+p2)/p3 # p1 and p2 on top over p3
+```
+
+```{r eval=FALSE}
+
+```
+
+```{r eval=FALSE}
+
+```

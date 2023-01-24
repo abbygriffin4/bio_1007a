@@ -23,6 +23,7 @@ My name is Abby Griffin (she/her) and I am a student in Reproducible Biology in 
 [Assignment 4](Assignment4.html)    
 [Assignment 5](Assignment5.html)  
 [Assignment 6](Assignment6.html)  
+[Assignment 7](Assignment7.html)  
 
 ## Weekly Assignments
 [Weekly Assignment #1](WeeklyAssignment1.html)  
@@ -31,5 +32,6 @@ My name is Abby Griffin (she/her) and I am a student in Reproducible Biology in 
 ## Class Notes
 [Scripting in R 01-12-2023](2023-01-12-Scripting-in-R.R)    
 [Data Structures 01-17-2023](2023-01-17-Data-Structures.R)  
-[Finishing Up Matrices 01-19-2023](2023-01-19-Finishing-Up-Matrices.R)
+[Finishing Up Matrices 01-19-2023](2023-01-19-Finishing-Up-Matrices.R)  
 [Entering the Tidyverse 01-23-2023](2023-01-23-Entering-The-tidyverse.html)
+[ggplot2 01-24-2023](2023-01-24-ggplot2.Rmd)
