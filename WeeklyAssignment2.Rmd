@@ -7,7 +7,7 @@ output:
     theme: architect
     highlight: github
 ---
-## Weekly Assignment #2 - not completed yet
+## Weekly Assignment #2
 
 ### 1: Create a function that returns a data frame with 2 columns (named “Type” and “Value”) and 50 rows/observations.
   + The first column should have “Control” as the first 25 observations and “Treatment” as the second half of observations.
@@ -15,7 +15,7 @@ output:
 ```{r}
 set.seed(20) # set.seed to prevent new randomized data with each rerun
 df_func<-function(means=c(10,45),sds=c(1.5,2)){
-Type<-rep(c("Treatment", "Control"), each=25) # create first column with 25 lines of both treatment and control
+Type<-rep(c("Control", "Treatment"), each=25) # create first column with 25 lines of both treatment and control
 Value<-c(rnorm(n=25, mean=means[1], sd=sds[1]),(rnorm(n=25, mean=means[2], sd=sds[2]))) # create second column with random values
 
 typevalue_df<-data.frame(Type, Value, stringsAsFactors = FALSE) # create df with "Type" and "Value" columns

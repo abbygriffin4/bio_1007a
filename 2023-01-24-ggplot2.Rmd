@@ -42,6 +42,8 @@ qplot(x=d$hwy, fill=I("darkblue"), color=I("black"))
 ```
 * Make a **scatter plot**
 ```{r eval=FALSE}
+library(dplyr)
+library(ggplot2)
 qplot(x=d$displ, y=d$hwy, geom=c("smooth", "point"), method="lm") # method makes it a linear distribution and not just following points
 ```
 * Make it a **box plot**

@@ -71,7 +71,8 @@ starwars_heightboxplot +
   geom_point(aes(colour = sex))
 ```
 
-4. Using the same or a different built-in data set, create at least one additional (and different kind of) plot. Experiment with different arguments, features, and colors.  
+4. Using the same or a different built-in data set, create at least one additional (and different kind of) plot. Experiment with different arguments, features, and colors. 
+* **Comparing Sepal Length to Petal Length in Iris Species**
 ```{r}
 i1<-ggplot(data=iris, mapping=aes(x=Sepal.Length, y=Petal.Length, color=Species, shape=Species)) +
   geom_point(size=1) +
@@ -82,8 +83,51 @@ i1<-ggplot(data=iris, mapping=aes(x=Sepal.Length, y=Petal.Length, color=Species,
 i1
 ```
 
+* **UCB Admission to Department By Sex**
+```{r}
+# Using UCBAdmissions data, which includes # of acceptances and rejections to depts by sex
+class(UCBAdmissions)
+ftable2df<-function(mydata) {
+  ifelse(class(mydata) == "ftable", 
+         mydata <- mydata, mydata <- ftable(mydata))
+  dfrows <- rev(expand.grid(rev(attr(mydata, "row.vars"))))
+  dfcols <- as.data.frame.matrix(mydata)
+  names(dfcols) <- do.call(
+    paste, c(rev(expand.grid(rev(attr(mydata, "col.vars")))), sep = "_"))
+  cbind(dfrows, dfcols)
+} # not my code, but this allowed me to convert table data into a df!
+ucb_table<-transform(ftable2df(ftable(UCBAdmissions, row.vars = 3:2)), 
+  Applications = Admitted + Rejected)
+
+ucb_admit_plot<-ggplot(data=ucb_table, aes(x=Dept, y=Admitted, fill=Gender)) +
+  geom_col(position=position_dodge()) +# creating a bar plot to compare # of admits based on sex
+  xlab("Department") + # add x axis label
+  ylab("# of Admits") +
+  labs(title="UCB Admission to Department By Sex") +
+  labs(fill='Sex') +
+    geom_text(aes(label=Admitted), vjust=-0.4, position=position_dodge(width=1), color="black", size=2) +
+  scale_fill_manual(values=c("darkcyan","limegreen"))
+```
+* **Effect of Chicken Diet on Growth Over Time**
+```{r}
+# Using ChickWeight, a data set which compares weight to age of chicks on different diets
+
+cwavg <- ChickWeight %>%
+  group_by(Diet, Time) %>%
+  summarize(meanWeight=mean(weight))
+  # large data set, so averaging weight per day
+  
+cwavg_scatter<-ggplot(data=cwavg) +
+  geom_point(aes(x = Time, y = meanWeight, shape = Diet, color = Diet)) +
+  xlab("Time") +
+  ylab("Weight") +
+  labs(title="Effect of Chicken Diet on Weight Gain Over Time")
+print(cwavg_scatter)
+```
+
 Finally, create a multi-panel figure with the graphs you created.  
 ```{r}
 library(patchwork)
-starwars_heightboxplot / i1
+print(starwars_heightboxplot / i1)
+print(ucb_admit_plot / cwavg_scatter)
 ```

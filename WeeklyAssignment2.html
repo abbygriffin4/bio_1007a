@@ -12,7 +12,7 @@
 
 <meta name="author" content="Abigail Griffin" />
 
-<meta name="date" content="2023-01-22" />
+<meta name="date" content="2023-01-25" />
 
 <title>Weekly Assignment #2</title>
 
@@ -151,7 +151,7 @@ code span.ot { color: #007020; }
 <div class="inner">
 <h1 class="title toc-ignore">Weekly Assignment #2</h1>
 <h3 class="author">Abigail Griffin</h3>
-<h3 class="date">2023-01-22</h3>
+<h3 class="date">2023-01-25</h3>
 </div>
 </header>
 
@@ -160,8 +160,8 @@ code span.ot { color: #007020; }
 <div id="content-wrapper">
   <div class="inner clearfix">
     <section id="main-content">
-<div id="weekly-assignment-2---not-completed-yet" class="section level2">
-<h2>Weekly Assignment #2 - not completed yet</h2>
+<div id="weekly-assignment-2" class="section level2">
+<h2>Weekly Assignment #2</h2>
 <div id="create-a-function-that-returns-a-data-frame-with-2-columns-named-type-and-value-and-50-rowsobservations." class="section level3">
 <h3>1: Create a function that returns a data frame with 2 columns (named
 “Type” and “Value”) and 50 rows/observations.</h3>
@@ -177,7 +177,7 @@ into multiple code blocks.</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20</span>) <span class="co"># set.seed to prevent new randomized data with each rerun</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df_func<span class="ot">&lt;-</span><span class="cf">function</span>(<span class="at">means=</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">45</span>),<span class="at">sds=</span><span class="fu">c</span>(<span class="fl">1.5</span>,<span class="dv">2</span>)){</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Type<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Treatment&quot;</span>, <span class="st">&quot;Control&quot;</span>), <span class="at">each=</span><span class="dv">25</span>) <span class="co"># create first column with 25 lines of both treatment and control</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Type<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Treatment&quot;</span>), <span class="at">each=</span><span class="dv">25</span>) <span class="co"># create first column with 25 lines of both treatment and control</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Value<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">25</span>, <span class="at">mean=</span>means[<span class="dv">1</span>], <span class="at">sd=</span>sds[<span class="dv">1</span>]),(<span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">25</span>, <span class="at">mean=</span>means[<span class="dv">2</span>], <span class="at">sd=</span>sds[<span class="dv">2</span>]))) <span class="co"># create second column with random values</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>typevalue_df<span class="ot">&lt;-</span><span class="fu">data.frame</span>(Type, Value, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>) <span class="co"># create df with &quot;Type&quot; and &quot;Value&quot; columns</span></span>
@@ -185,68 +185,68 @@ into multiple code blocks.</li>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">df_func</span>()</span></code></pre></div>
 <pre><code>##         Type     Value
-## 1  Treatment 11.744028
-## 2  Treatment  9.121113
-## 3  Treatment 12.678198
-## 4  Treatment  8.001109
-## 5  Treatment  9.330150
-## 6  Treatment 10.854409
-## 7  Treatment  5.665424
-## 8  Treatment  8.696472
-## 9  Treatment  9.307446
-## 10 Treatment  9.166689
-## 11 Treatment  9.969797
-## 12 Treatment  9.774427
-## 13 Treatment  9.057810
-## 14 Treatment 11.984831
-## 15 Treatment  7.717974
-## 16 Treatment  9.343858
-## 17 Treatment 11.455866
-## 18 Treatment 10.042334
-## 19 Treatment  9.871327
-## 20 Treatment 10.583822
-## 21 Treatment 10.355031
-## 22 Treatment  9.783340
-## 23 Treatment 11.083345
-## 24 Treatment 10.554860
-## 25 Treatment  9.636901
-## 26   Control 42.055873
-## 27   Control 43.807681
-## 28   Control 42.706600
-## 29   Control 40.050727
-## 30   Control 43.772983
-## 31   Control 44.567377
-## 32   Control 48.180292
-## 33   Control 48.112287
-## 34   Control 47.216902
-## 35   Control 42.805316
-## 36   Control 41.278789
-## 37   Control 43.172842
-## 38   Control 47.491138
-## 39   Control 45.175709
-## 40   Control 45.846964
-## 41   Control 43.363034
-## 42   Control 41.914864
-## 43   Control 46.111764
-## 44   Control 44.261942
-## 45   Control 42.905323
-## 46   Control 45.036360
-## 47   Control 46.763755
-## 48   Control 46.763723
-## 49   Control 47.052486
-## 50   Control 44.237382</code></pre>
+## 1    Control 11.744028
+## 2    Control  9.121113
+## 3    Control 12.678198
+## 4    Control  8.001109
+## 5    Control  9.330150
+## 6    Control 10.854409
+## 7    Control  5.665424
+## 8    Control  8.696472
+## 9    Control  9.307446
+## 10   Control  9.166689
+## 11   Control  9.969797
+## 12   Control  9.774427
+## 13   Control  9.057810
+## 14   Control 11.984831
+## 15   Control  7.717974
+## 16   Control  9.343858
+## 17   Control 11.455866
+## 18   Control 10.042334
+## 19   Control  9.871327
+## 20   Control 10.583822
+## 21   Control 10.355031
+## 22   Control  9.783340
+## 23   Control 11.083345
+## 24   Control 10.554860
+## 25   Control  9.636901
+## 26 Treatment 42.055873
+## 27 Treatment 43.807681
+## 28 Treatment 42.706600
+## 29 Treatment 40.050727
+## 30 Treatment 43.772983
+## 31 Treatment 44.567377
+## 32 Treatment 48.180292
+## 33 Treatment 48.112287
+## 34 Treatment 47.216902
+## 35 Treatment 42.805316
+## 36 Treatment 41.278789
+## 37 Treatment 43.172842
+## 38 Treatment 47.491138
+## 39 Treatment 45.175709
+## 40 Treatment 45.846964
+## 41 Treatment 43.363034
+## 42 Treatment 41.914864
+## 43 Treatment 46.111764
+## 44 Treatment 44.261942
+## 45 Treatment 42.905323
+## 46 Treatment 45.036360
+## 47 Treatment 46.763755
+## 48 Treatment 46.763723
+## 49 Treatment 47.052486
+## 50 Treatment 44.237382</code></pre>
 <div id="save-your-new-functions-output-as-a-variable-and-use-a-function-to-view-the-first-6-rows-of-the-data-frame." class="section level4">
 <h4>Save your new function’s output as a variable, and use a function to
 view the first 6 rows of the data frame.</h4>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>q1df<span class="ot">&lt;-</span><span class="fu">df_func</span>() <span class="co"># save function output as variable </span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(q1df, <span class="dv">6</span>) <span class="co"># print first 6 rows of df</span></span></code></pre></div>
-<pre><code>##        Type     Value
-## 1 Treatment 11.649153
-## 2 Treatment  9.953624
-## 3 Treatment 10.285509
-## 4 Treatment 12.002810
-## 5 Treatment 11.095829
-## 6 Treatment 10.084303</code></pre>
+<pre><code>##      Type     Value
+## 1 Control 11.649153
+## 2 Control  9.953624
+## 3 Control 10.285509
+## 4 Control 12.002810
+## 5 Control 11.095829
+## 6 Control 10.084303</code></pre>
 </div>
 <div id="lets-say-you-would-like-to-know-whether-there-is-a-statistically-significant-difference-in-value-response-variable-y-depending-on-type-explanatory-variable-x.-type-aov-in-the-console-to-determine-how-to-run-an-analysis-of-variance-anova-on-your-simulated-data.-write-a-line-of-code-that-displays-a-summary-of-your-anova." class="section level4">
 <h4>Let’s say you would like to know whether there is a statistically
