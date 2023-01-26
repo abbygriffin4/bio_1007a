@@ -14,15 +14,17 @@ output:
   + The second column should have the first 25 values as random and normally distributed with a mean of 10 and standard deviation of 1.5. The next 25 values of the second column should be random and normally distributed with a mean of 45 and standard deviation of 2. You can do this all as a single line of code in the function or by breaking it up into multiple code blocks.
 ```{r}
 set.seed(20) # set.seed to prevent new randomized data with each rerun
-df_func<-function(means=c(10,45),sds=c(1.5,2)){
+df_func<-function(means=c(10,45),sds=c(1.5,2)){ # I didn't have n=25 in function(...) but left it when I assigned variables below
 Type<-rep(c("Control", "Treatment"), each=25) # create first column with 25 lines of both treatment and control
 Value<-c(rnorm(n=25, mean=means[1], sd=sds[1]),(rnorm(n=25, mean=means[2], sd=sds[2]))) # create second column with random values
-
 typevalue_df<-data.frame(Type, Value, stringsAsFactors = FALSE) # create df with "Type" and "Value" columns
 return(typevalue_df) # return df please
 }
 df_func()
+
 ```
+* **Assignment 8: Yes, I can run my simulated data function with new values for the means without error.**
+
 #### Save your new function’s output as a variable, and use a function to view the first 6 rows of the data frame.
 ```{r}
 q1df<-df_func() # save function output as variable 
@@ -37,10 +39,10 @@ summary(ANOVA_Test) # produce summary of ANOVA results
 
 #### Finally create a function that uses a data frame as its input and returns only the p-value of an ANOVA summary table (feel free to use Google/Stack Overflow). Write your code in such a way that you can use any simulated data set with two columns as the function’s argument.
 ```{r}
-pvalue_func<-function(data=ANOVA_Test){ # use data from my ANOVA test
+pvalue_func<-function(data=NULL){ # initally put ANOVA_Test here, but this wouldn't allow any simulated data set to be used
   p<-summary(ANOVA_Test)[[1]][["Pr(>F)"]][1] # extract the first element in the first compartment named "Pr(>F)" (the p value)
   return(p) # return p value please
 }
-pvalue_func()
+pvalue_func(data=ANOVA_Test)
 ```
 

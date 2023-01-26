@@ -1,0 +1,74 @@
+---
+title: "Assignment 8"
+author: "Abigail Griffin"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+---
+## Daily Assignment 8
+
+### Code Reflection and Code Annotation
+
+#### Code Reflection
+1. Go through your recent assignments and the posted solutions (Assignment 6 posted solutions and Weekly Assignment 2 solutions) - compare your code to the posted code.
+* Can you run your simulated data function with new values for the means? If not, what do you need to change about your code?
+# Yes I can.
+* Are there differences between the posted code and yours? Did you notice you were missing anything?
+* Make sure you annotate your code using # and leave brief descriptions of your thought process.
+
+
+#### Code Annotation
+2. I used `dryad` data to reconstruct a publication-quality figure. Copy my code into an Rmd file and annotate what each ggplot line of code is doing, including any arguments. You can use a combination of googling and ‘trial/error coding:’ change the arguments/options to visually see how it affects the plot.
+```{r}
+## Set up libraries
+library(tidyverse)
+library(ggthemes)
+
+
+# Data obtained from Veysey Powell and Babbitt 2016: An experimental test of buffer utility as a technique for managing pool-breeding amphibians https://datadryad.org/stash/dataset/doi:10.5061%2Fdryad.547rp
+
+#then do this
+dryadData <- read.table("Data/veysey-babbitt_data_amphibians.csv", header=TRUE, sep=",", stringsAsFactors = TRUE) # header=TRUE because data do have a header. sep = "," because it's a csv file - separated by commas. stringAsFactors=TRUE because the data are distinct groups
+
+# glimpse(dryadData)
+# head(dryadData)
+# table(dryadData$species)
+
+dryadData$species<-factor(dryadData$species, labels=c("Spotted Salamander", "Wood Frog")) # $ accesses 'species' column of dryadData. labels=... creates 'labels' to use for the plot.
+
+#class(dryadData$treatment)
+dryadData$treatment <- factor(dryadData$treatment, 
+            levels=c("Reference",
+                     "100m", "30m")) # Orders these variables in this order: Reference goes first, then 100m, then 30m. Changes order of groups
+
+#note to self: run this first
+p<- ggplot(data=dryadData, # use dryadData
+  aes(x=interaction(wetland, treatment), # group treatment and wetland
+  y=count.total.adults, fill=factor(year))) + # put total count of adults on the y axis, fill in color based on year
+  geom_bar(position="dodge", stat="identity", color="black") + # make a bar graph, position="dodge" places two bars side by side, stat="identity" has R use y value for the dependent variable, color="black" outlines all boxes/bar plot rectanges in black
+  ylab("Number of breeding adults") + # name the y axis
+  xlab("") + # no name for x axis
+  scale_y_continuous(breaks = c(0,100,200,300,400,500)) + # add this scale/these labels to the y axis
+  scale_x_discrete(labels=c("30 (Ref)", "124 (Ref)", "141 (Ref)", "25 (100m)","39 (100m)","55 (100m)","129 (100m)", "7 (30m)","19 (30m)","20 (30m)","59 (30m)")) + # add these named values to the x axis
+  facet_wrap(~species, nrow=2, strip.position="right") + # facet_wrap creates a multi-panel plot - 2 plots are placed on top of each other (nrow=2). ~species describes that the species name should be placed to the right of each graph. strip.position="right" puts species name on the right side.
+  theme_few() + scale_fill_grey() + # this is the gg theme chosen for the bar graph, with a gray scale added for each grouping
+  theme(panel.background = element_rect(fill = 'gray94', color = 'black'), legend.position="top",  legend.title= element_blank(), axis.title.y = element_text(size=12, face="bold", colour = "black"), strip.text.y = element_text(size = 10, face="bold", colour = "black")) +
+  # theme(panel.background = element_rect(fill = 'gray94', color = 'black'): this changes the theme of the panel background. gray94 is the background of the plots. color='black' is the outline color of the plot.
+  # legend.position="top": puts years legend at the top
+  # legend.title=element_blank(): legend title is black
+  # axis.title.y=element_text(size=12, face="bold", colour = "black"): the y axis title should be size 12, bold face, black text
+  # strip.text.y = element_text(size = 10, face="bold", colour = "black"): the species names on the right side (the "strip text") should be size 10, bold face, black text.
+  guides(fill=guide_legend(nrow=2,byrow=TRUE))
+  # guides sets a guide for the scale
+  # fill the legend with the values from guide_legend 
+  # nrow=1: make a single row of objects for the key
+  # byrow=TRUE: if this legend were multiple rows, TRUE adds space between the rows
+
+p
+
+```
+
+
+

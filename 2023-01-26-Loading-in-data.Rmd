@@ -1,0 +1,100 @@
+---
+title: "2023-01-26 Loading in Data"
+author: "Abigail Griffin"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+---
+## Loading in Data
+January 26 2023   
+AGG
+
+### 1. Create and save a dataset:
+* `write.table(x=varName, file="outputFileName.csv", header=TRUE, sep=",")`
+
+### 2. These functions read in a data set
+* `read.table()` and `read.csv()` are main two operators of how to read in a data set
+  + `read.table(file="path/to/data.csv", header=TRUE, sep = ","`
+      + usually better
+  + `read.csv(file="data.csv", header = TRUE, sep = ",")`
+* csv is best format for writing data into R
+
+### Use RDS Object only when working in R: saveRDs
+* RDS creates an R object that is loaded in R which you can send to people. It is helpful with large datasets - creates much smaller files to send
+* `saveRDS(my_data, file="FileName.RDS")`: uses a variable you've created and named in R and saves it as its own object
+* `readRDS("FileName.RDS")`
+* `p<-readRDS("FileName.RDS")`
+
+### Long v. Wide data formats
+* **Long**: more rows than columns. Contains values that DO repeat in ID column
+* **Wide**: more columns than rows. Contains values that do not repeat in the ID column
+* e.g.
+```{r}
+library(tidyverse)
+library(ggthemes)
+
+
+head(billboard)
+# this is wide format because there are so many columns
+glimpse(billboard)
+
+b1<-billboard %>%
+  pivot_longer (
+    cols = starts_with ("wk"), #cols = : specify which columns you want to make longer
+  names_to = "Week", # name of new column which will contain the header names
+  values_to = "Rank", # name of new column which will contain the values
+  values_drop_na = TRUE) # excludes any rows which have NA
+  ## only use view(b1) in R script or in console. Rmarkdown does not like this. Remove if knitting
+```
+
+* **pivot_wider**: best for making occupancy matrix
+```{r}
+glimpse(fish_encounters)
+view(fish_encounters)
+
+fish_encounters %>%
+  pivot_wider(names_from = station, values_from=seen, values_fill=0) # names_from= which column you want to turn into multiple columns # values_from= which column contains the values for the new column cells
+# now each fish is only represented once as a row and each station is represented if they are seen there. if never seen there is an NA. so add values_fill=0
+# this is appropriate format if you want to create an occupancy matrix
+```
+
+
+### Publicly available data through Dryad
+* a curated resource that makes research data discoverable, freely reusable, and citable.
+* [Explore data sets here.](https://datadryad.org/search)
+* Open dryad data using **`readtable()`**
+```{r}
+dryadData<-read.table(file="data/veysey-babbitt_data_amphibians.csv", header=TRUE, sep = ",") # header=TRUE because data do have a header # sep = "," because it's a csv file - separated by commas
+glimpse(dryadData)
+head(dryadData)
+table(dryadData$species) # allows you to see different groups of character column
+summary(dryadData$mean.hydro)
+
+str(dryadData$species)
+dryadData$species<-factor(dryadData$species, labels=c("Spotted Salamander", "Wood Frog")) #creating 'labels' to use for the plot
+class(dryadData$treatment)
+
+dryadData$treatment <- factor(dryadData$treatment, 
+            levels=c("Reference",
+                     "100m", "30m")) # Reference goes first, then 100m, then 30m
+
+p<- ggplot(data=dryadData, 
+       aes(x=interaction(wetland, treatment), # group treatment and wetland
+           y=count.total.adults, fill=factor(year))) + geom_bar(position="dodge", stat="identity", color="black") +
+  ylab("Number of breeding adults") +
+  xlab("") +
+  scale_y_continuous(breaks = c(0,100,200,300,400,500)) +
+  scale_x_discrete(labels=c("30 (Ref)", "124 (Ref)", "141 (Ref)", "25 (100m)","39 (100m)","55 (100m)","129 (100m)", "7 (30m)","19 (30m)","20 (30m)","59 (30m)")) + #labels for x axis
+  facet_wrap(~species, nrow=2, strip.position="right") +
+  theme_few() + scale_fill_grey() + 
+  theme(panel.background = element_rect(fill = 'gray94', color = 'black'), legend.position="top",  legend.title= element_blank(), axis.title.y = element_text(size=12, face="bold", colour = "black"), strip.text.y = element_text(size = 10, face="bold", colour = "black")) + 
+  guides(fill=guide_legend(nrow=1,byrow=TRUE)) 
+
+p
+
+```
+```{r warning=FALSE, message=FALSE}
+# will not print out any text
+```
