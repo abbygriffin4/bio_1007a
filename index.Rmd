@@ -29,6 +29,7 @@ My name is Abby Griffin (she/her) and I am a student in Reproducible Biology in 
 [Weekly Assignment #1](WeeklyAssignment1.html)  
 [Weekly Assignment #2](WeeklyAssignment2.html)  
 [Weekly Assignment #3](WeeklyAssignment3.html)   
+[Weekly Assignment #4](WeeklyAssignment4.html)  
 
 ## Class Notes
 [Scripting in R 01-12-2023](2023-01-12-Scripting-in-R.R)    
