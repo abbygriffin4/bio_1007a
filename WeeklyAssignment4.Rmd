@@ -1,0 +1,53 @@
+---
+title: "Weekly Assignment 4"
+author: "Abigail Griffin"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+---
+1. Simulate a brand new data frame (the type of data is up to you) and conduct a statistical analysis in R using 2 variables. Create a basic ggplot that goes with the analysis.
+```{r}
+# glimpse(iris)
+# we are making a box plot that will compared species to sepal length
+flwr<-data.frame(iris$Species, iris$Sepal.Length) # create a df with these variables from the iris data set
+```
+
+* I'm going to do an **ANOVA Test** to test if there is significance between these two variables:
+  + ANOVA and t-tests are used for statistical analysis when x is a categorical variable and y is a continuous variable. Box and bar plots are the preferred plots for these analyses.
+```{r}
+ANOV<-aov(iris.Sepal.Length ~ iris.Species, data=flwr) # use iris data, aov requires data to be formatted y~x
+summary(ANOV) # summary table of aov
+
+pvalue_func<-function(data=ANOV){ # used this function I created in Weekly Assignment 2
+  p<-summary(ANOV)[[1]][["Pr(>F)"]][1] # extract the first element in the first compartment named "Pr(>F)" (the p value)
+  return(p)
+}
+
+pvalue_func(data=ANOV)
+```
+
+* Now I'm going to create a **box plot**:
+```{r}
+library(viridis)
+library(ggplot2)
+cols<-viridis(3, option = "plasma") # takes 3 hex color codes from the viridis color packages. # also plasma, turbo, viridis. # have to give it the same number of colors as you have groups
+
+flwrbox<-ggplot(data=flwr, aes(x=iris.Species,y=iris.Sepal.Length, fill=iris.Species)) + # create a ggplot using flwr data where x=species, y=sepal length, and the boxes are filled based on species
+  geom_boxplot() + # create a box plot
+  scale_fill_manual(values=cols, name = "Species") + # name the legend Species
+  labs(title="Difference in Sepal Length Among Species",
+       subtitle="Abby Griffin BIOL 1007A",
+            x="Species",
+            y="Sepal Length") + # naming title/subtitle/x/y axes
+  theme_classic() + # remove background and gridlines
+  theme(plot.title = element_text(color = "black"),
+        plot.subtitle = element_text (color = "grey60")
+        ) + # change color of title/subtitle
+  annotate("text", x = 2, y = 7.5, label = "p=1.669669e-31")
+print(flwrbox)
+```
+
+
+

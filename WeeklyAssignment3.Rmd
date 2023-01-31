@@ -6,6 +6,8 @@ output:
     prettydoc::html_pretty:
     theme: architect
     highlight: github
+editor_options: 
+  chunk_output_type: console
 ---
 ## Weekly Assignment #3
 
@@ -33,10 +35,10 @@ classoutcomes_plot <- ggplot(data_mod, aes(fill=ind, y=values, x=Metric)) +
     geom_bar(position="dodge", stat="identity", color="black") +
   scale_x_discrete(limit=c("Flora/Fauna", "Experimental Design", "Oral Presentation", "Field Research", "Graduate Degree", "Science Career", "Research Opportunities", "UCSC Community"),
         labels=c("Species Identification", "Experimental Design", "Oral Presentations", "Research Methods", "Grad School Interest", "Science Career Interest", "Research Opportunities",  "Sense of Community")) +
-  scale_y_continuous(breaks=seq(0,2,by=1)) +
-  theme_bw() +
-  theme(panel.border = element_blank(), panel.grid.major = element_blank(),
-panel.grid.minor = element_blank(), axis.line.x = element_blank(), axis.line.y=element_line(colour="black"), axis.ticks.x = element_blank()) +
+  ylim(-1,2)+
+  theme_bw() + # remove background
+  theme(panel.border = element_blank(), panel.grid.major = element_blank(), # remove panel border and grid
+panel.grid.minor = element_blank(), axis.line.x = element_blank(), axis.line.y=element_line(colour="black"), axis.ticks.x = element_blank()) + # remove background elements, remove x axis line, add black y axis line, remove x axis ticks
   theme(axis.text.x = element_text(angle = 45, hjust=1)) +
   xlab(NULL) +
   ylab("Improvement") +

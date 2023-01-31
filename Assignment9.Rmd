@@ -41,7 +41,6 @@ intmate<-function(int1, int2){ #argument of fn is a placeholder for what the fn 
 
 intmate(3,4)
 
-
 ```
 
 
