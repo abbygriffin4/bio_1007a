@@ -12,9 +12,9 @@
 
 <meta name="author" content="Abigail Griffin" />
 
-<meta name="date" content="2023-01-30" />
+<meta name="date" content="2023-01-31" />
 
-<title>Weekly Assignment #2</title>
+<title>Assignment 9</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -149,9 +149,9 @@ code span.ot { color: #007020; }
 
 <header>
 <div class="inner">
-<h1 class="title toc-ignore">Weekly Assignment #2</h1>
+<h1 class="title toc-ignore">Assignment 9</h1>
 <h3 class="author">Abigail Griffin</h3>
-<h3 class="date">2023-01-30</h3>
+<h3 class="date">2023-01-31</h3>
 </div>
 </header>
 
@@ -160,123 +160,72 @@ code span.ot { color: #007020; }
 <div id="content-wrapper">
   <div class="inner clearfix">
     <section id="main-content">
-<div id="weekly-assignment-2" class="section level2">
-<h2>Weekly Assignment #2</h2>
-<div id="create-a-function-that-returns-a-data-frame-with-2-columns-named-type-and-value-and-50-rowsobservations." class="section level3">
-<h3>1: Create a function that returns a data frame with 2 columns (named
-“Type” and “Value”) and 50 rows/observations.</h3>
-<ul>
-<li>The first column should have “Control” as the first 25 observations
-and “Treatment” as the second half of observations.</li>
-<li>The second column should have the first 25 values as random and
-normally distributed with a mean of 10 and standard deviation of 1.5.
-The next 25 values of the second column should be random and normally
-distributed with a mean of 45 and standard deviation of 2. You can do
-this all as a single line of code in the function or by breaking it up
-into multiple code blocks.</li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20</span>) <span class="co"># set.seed to prevent new randomized data with each rerun</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df_func<span class="ot">&lt;-</span><span class="cf">function</span>(<span class="at">means=</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">45</span>),<span class="at">sds=</span><span class="fu">c</span>(<span class="fl">1.5</span>,<span class="dv">2</span>)){ <span class="co"># I didn&#39;t have n=25 in function(...) but left it when I assigned variables below</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Type<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Treatment&quot;</span>), <span class="at">each=</span><span class="dv">25</span>) <span class="co"># create first column with 25 lines of both treatment and control</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Value<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">25</span>, <span class="at">mean=</span>means[<span class="dv">1</span>], <span class="at">sd=</span>sds[<span class="dv">1</span>]),(<span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">25</span>, <span class="at">mean=</span>means[<span class="dv">2</span>], <span class="at">sd=</span>sds[<span class="dv">2</span>]))) <span class="co"># create second column with random values</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>typevalue_df<span class="ot">&lt;-</span><span class="fu">data.frame</span>(Type, Value, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>) <span class="co"># create df with &quot;Type&quot; and &quot;Value&quot; columns</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>(typevalue_df) <span class="co"># return df please</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">df_func</span>()</span></code></pre></div>
-<pre><code>##         Type     Value
-## 1    Control 11.744028
-## 2    Control  9.121113
-## 3    Control 12.678198
-## 4    Control  8.001109
-## 5    Control  9.330150
-## 6    Control 10.854409
-## 7    Control  5.665424
-## 8    Control  8.696472
-## 9    Control  9.307446
-## 10   Control  9.166689
-## 11   Control  9.969797
-## 12   Control  9.774427
-## 13   Control  9.057810
-## 14   Control 11.984831
-## 15   Control  7.717974
-## 16   Control  9.343858
-## 17   Control 11.455866
-## 18   Control 10.042334
-## 19   Control  9.871327
-## 20   Control 10.583822
-## 21   Control 10.355031
-## 22   Control  9.783340
-## 23   Control 11.083345
-## 24   Control 10.554860
-## 25   Control  9.636901
-## 26 Treatment 42.055873
-## 27 Treatment 43.807681
-## 28 Treatment 42.706600
-## 29 Treatment 40.050727
-## 30 Treatment 43.772983
-## 31 Treatment 44.567377
-## 32 Treatment 48.180292
-## 33 Treatment 48.112287
-## 34 Treatment 47.216902
-## 35 Treatment 42.805316
-## 36 Treatment 41.278789
-## 37 Treatment 43.172842
-## 38 Treatment 47.491138
-## 39 Treatment 45.175709
-## 40 Treatment 45.846964
-## 41 Treatment 43.363034
-## 42 Treatment 41.914864
-## 43 Treatment 46.111764
-## 44 Treatment 44.261942
-## 45 Treatment 42.905323
-## 46 Treatment 45.036360
-## 47 Treatment 46.763755
-## 48 Treatment 46.763723
-## 49 Treatment 47.052486
-## 50 Treatment 44.237382</code></pre>
-<ul>
-<li><strong>Assignment 8: Yes, I can run my simulated data function with
-new values for the means without error.</strong></li>
-</ul>
-<div id="save-your-new-functions-output-as-a-variable-and-use-a-function-to-view-the-first-6-rows-of-the-data-frame." class="section level4">
-<h4>Save your new function’s output as a variable, and use a function to
-view the first 6 rows of the data frame.</h4>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>q1df<span class="ot">&lt;-</span><span class="fu">df_func</span>() <span class="co"># save function output as variable </span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(q1df, <span class="dv">6</span>) <span class="co"># print first 6 rows of df</span></span></code></pre></div>
-<pre><code>##      Type     Value
-## 1 Control 11.649153
-## 2 Control  9.953624
-## 3 Control 10.285509
-## 4 Control 12.002810
-## 5 Control 11.095829
-## 6 Control 10.084303</code></pre>
-</div>
-<div id="lets-say-you-would-like-to-know-whether-there-is-a-statistically-significant-difference-in-value-response-variable-y-depending-on-type-explanatory-variable-x.-type-aov-in-the-console-to-determine-how-to-run-an-analysis-of-variance-anova-on-your-simulated-data.-write-a-line-of-code-that-displays-a-summary-of-your-anova." class="section level4">
-<h4>Let’s say you would like to know whether there is a statistically
-significant difference in “Value” (response variable y) depending on
-“Type” (explanatory variable x). Type ?aov in the console to determine
-how to run an analysis of variance (ANOVA) on your simulated data. Write
-a line of code that displays a summary of your ANOVA.</h4>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ANOVA_Test<span class="ot">&lt;-</span><span class="fu">aov</span>(Value <span class="sc">~</span> Type, <span class="at">data=</span>q1df) <span class="co"># perform ANOVA to test for significance between response variable Y &quot;Value&quot; and explanatory variable x &quot;Type&quot;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ANOVA_Test) <span class="co"># produce summary of ANOVA results</span></span></code></pre></div>
-<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)    
-## Type         1  15512   15512    5750 &lt;2e-16 ***
-## Residuals   48    130       3                   
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-</div>
-<div id="finally-create-a-function-that-uses-a-data-frame-as-its-input-and-returns-only-the-p-value-of-an-anova-summary-table-feel-free-to-use-googlestack-overflow.-write-your-code-in-such-a-way-that-you-can-use-any-simulated-data-set-with-two-columns-as-the-functions-argument." class="section level4">
-<h4>Finally create a function that uses a data frame as its input and
-returns only the p-value of an ANOVA summary table (feel free to use
-Google/Stack Overflow). Write your code in such a way that you can use
-any simulated data set with two columns as the function’s argument.</h4>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pvalue_func<span class="ot">&lt;-</span><span class="cf">function</span>(<span class="at">data=</span><span class="cn">NULL</span>){ <span class="co"># initally put ANOVA_Test here, but this wouldn&#39;t allow any simulated data set to be used</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  p<span class="ot">&lt;-</span><span class="fu">summary</span>(ANOVA_Test)[[<span class="dv">1</span>]][[<span class="st">&quot;Pr(&gt;F)&quot;</span>]][<span class="dv">1</span>] <span class="co"># extract the first element in the first compartment named &quot;Pr(&gt;F)&quot; (the p value)</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(p) <span class="co"># return p value please</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">pvalue_func</span>(<span class="at">data=</span>ANOVA_Test)</span></code></pre></div>
-<pre><code>## [1] 1.237636e-51</code></pre>
-</div>
+<div id="daily-assignment-9" class="section level2">
+<h2>Daily Assignment 9</h2>
+<div id="for-loops-and-if-statements" class="section level3">
+<h3><code>For</code> Loops and <code>If</code> Statements</h3>
+<ol style="list-style-type: decimal">
+<li>Using a <code>for</code> loop and an <code>if</code> statement,
+write a function to calculate the number of zeroes in a numeric vector.
+Before entering the loop, set up a vector of integers with some zero
+values. Then, set up a counter variable counter &lt;- 0. Inside the
+loop, add 1 to counter each time you have a zero in the vector. Finally,
+use return(counter) for the output.</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>vec<span class="ot">&lt;-</span>(<span class="fu">round</span>(<span class="fu">runif</span>(<span class="at">n=</span><span class="dv">50</span>, <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">1</span>)))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>vecfn<span class="ot">&lt;-</span><span class="cf">function</span>(vector){</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  counter<span class="ot">&lt;-</span><span class="dv">0</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(vector)){</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (vector[i]<span class="sc">==</span><span class="dv">0</span>) {counter<span class="ot">&lt;-</span>counter<span class="sc">+</span><span class="dv">1</span>}</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(counter)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">vecfn</span>(vec)</span></code></pre></div>
+<pre><code>## [1] 30</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Write a function that takes as input two integers representing the
+number of rows and columns in a matrix. The output is a matrix of these
+dimensions in which each element is the product of the row number x the
+column number.</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>intmate<span class="ot">&lt;-</span><span class="cf">function</span>(int1, int2){ <span class="co">#argument of fn is a placeholder for what the fn is going to take</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  mate<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="at">nrow=</span>int1, <span class="at">ncol=</span>int2)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(mate)){</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(mate)){</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      mate[i,j] <span class="ot">&lt;-</span> i<span class="sc">*</span>j</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    } <span class="co"># end of column j loop</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(mate)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">intmate</span>(<span class="dv">3</span>,<span class="dv">4</span>)</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    2    3    4
+## [2,]    2    4    6    8
+## [3,]    3    6    9   12</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Use a for loop to repeat your previous functions from Weekly
+Assignment 2 (which simulate a data frame and extract a p-value) 100
+times. Store the results in a data frame that has 1 column indicating
+the replicate number and 1 column for the p-values (a total of 2 columns
+and 100 rows)</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_func<span class="ot">&lt;-</span><span class="cf">function</span>(<span class="at">means=</span><span class="fu">c</span>(mean1,mean2),<span class="at">sds=</span><span class="fu">c</span>(sd1,sd2)){</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Type<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Treatment&quot;</span>), <span class="at">each=</span><span class="dv">25</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Value<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">25</span>, <span class="at">mean=</span>mean1, <span class="at">sd=</span>sd1),(<span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">25</span>, <span class="at">mean=</span>mean2, <span class="at">sd=</span>sd2)))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>typevalue_df<span class="ot">&lt;-</span><span class="fu">data.frame</span>(Type, Value, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>(typevalue_df)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>q1df<span class="ot">&lt;-</span><span class="fu">df_func</span>()</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>ANOVA_Test<span class="ot">&lt;-</span><span class="fu">aov</span>(Value <span class="sc">~</span> Type, <span class="at">data=</span>q1df)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>pvalue_func<span class="ot">&lt;-</span><span class="cf">function</span>(<span class="at">data=</span><span class="cn">NULL</span>){</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  p<span class="ot">&lt;-</span><span class="fu">summary</span>(ANOVA_Test)[[<span class="dv">1</span>]][[<span class="st">&quot;Pr(&gt;F)&quot;</span>]][<span class="dv">1</span>]</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(p)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>){</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(df_func)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="dv">3</span><span class="sc">+</span><span class="dv">2</span>, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="co"># has nothing to do with which iteration you&#39;re in, will always produce the same value (5) in the loop</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="dv">3</span><span class="sc">+</span>i, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)}</span></code></pre></div>
 </div>
 </div>
     </section>

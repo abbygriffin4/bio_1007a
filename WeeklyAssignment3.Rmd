@@ -1,0 +1,51 @@
+---
+title: "Weekly Assignment 3"
+author: "Abigail Griffin"
+date: "`r Sys.Date()`"
+output:
+    prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+---
+## Weekly Assignment #3
+
+### 1: Go to Dryad to choose a published paper and data set and reconstruct your own figure. Code a ggplot graph that looks as close to the published figure as you can.
+Adding some finishing touches, but here's my work thus far...
+See [**Figure 1**](https://onlinelibrary.wiley.com/doi/full/10.1002/ece3.7209) from Race, AI, De Jesus, M, Beltran, RS, Zavaleta, ES. A comparative study between outcomes of an in-person versus online introductory field course. Ecol Evol. 2021; 11: 3625– 3635. https://doi.org/10.1002/ece3.7209.
+
+
+```{r}
+library(tidyverse)
+library(ggthemes)
+library(ggplot2) # load these libraries so I can access tools
+classoutcomesData<-read.table(file="data/classoutcomes.csv", header=TRUE, sep = ",") # upload Race et. al data and assign it to this variable
+
+glimpse(classoutcomesData)
+head(classoutcomesData)
+colnames(classoutcomesData)[16] ="Metric" # rename these columns to make them a bit easier to call
+colnames(classoutcomesData)[17] ="Class In-Person"
+colnames(classoutcomesData)[18] ="Class Online"
+classoutcomesDF<-data.frame(classoutcomesData[c(2:9),c("Metric", "Class In-Person", "Class Online")]) # create a new df using these parameters
+data_mod <- cbind(classoutcomesDF[1], stack(classoutcomesDF[2:3])) # stack in person and online so data_mod can be placed into the ggplot code
+data_mod$values <- as.numeric(data_mod$values) # coerce the values column to be numeric because ggplot cannot plot y if it is in character format
+
+classoutcomes_plot <- ggplot(data_mod, aes(fill=ind, y=values, x=Metric)) +
+    geom_bar(position="dodge", stat="identity", color="black") +
+  scale_x_discrete(limit=c("Flora/Fauna", "Experimental Design", "Oral Presentation", "Field Research", "Graduate Degree", "Science Career", "Research Opportunities", "UCSC Community"),
+        labels=c("Species Identification", "Experimental Design", "Oral Presentations", "Research Methods", "Grad School Interest", "Science Career Interest", "Research Opportunities",  "Sense of Community")) +
+  scale_y_continuous(breaks=seq(0,2,by=1)) +
+  theme_bw() +
+  theme(panel.border = element_blank(), panel.grid.major = element_blank(),
+panel.grid.minor = element_blank(), axis.line.x = element_blank(), axis.line.y=element_line(colour="black"), axis.ticks.x = element_blank()) +
+  theme(axis.text.x = element_text(angle = 45, hjust=1)) +
+  xlab(NULL) +
+  ylab("Improvement") +
+  scale_fill_manual(labels=c("BI0E82 In-Person", "BIOE82 Online"), values=c("darkcyan", "gray60")) +
+  theme(legend.title=element_blank(),
+        legend.position='top', 
+        legend.justification='left',
+        legend.direction='vertical')
+print(classoutcomes_plot)
+
+```
+

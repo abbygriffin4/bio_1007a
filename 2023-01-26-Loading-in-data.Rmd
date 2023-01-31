@@ -42,7 +42,7 @@ glimpse(billboard)
 
 b1<-billboard %>%
   pivot_longer (
-    cols = starts_with ("wk"), #cols = : specify which columns you want to make longer
+    cols = starts_with ("wk"), #cols = : specify which columns you want to make longer - put them in a row
   names_to = "Week", # name of new column which will contain the header names
   values_to = "Rank", # name of new column which will contain the values
   values_drop_na = TRUE) # excludes any rows which have NA
@@ -73,7 +73,7 @@ table(dryadData$species) # allows you to see different groups of character colum
 summary(dryadData$mean.hydro)
 
 str(dryadData$species)
-dryadData$species<-factor(dryadData$species, labels=c("Spotted Salamander", "Wood Frog")) #creating 'labels' to use for the plot
+dryadData$species<-factor(dryadData$species, labels=c("Spotted Salamander", "Wood Frog")) # creating 'labels' to use for the plot
 class(dryadData$treatment)
 
 dryadData$treatment <- factor(dryadData$treatment, 
@@ -98,3 +98,4 @@ p
 ```{r warning=FALSE, message=FALSE}
 # will not print out any text
 ```
+

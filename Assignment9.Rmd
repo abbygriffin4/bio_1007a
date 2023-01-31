@@ -1,0 +1,70 @@
+---
+title: "Assignment 9"
+author: "Abigail Griffin"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+---
+## Daily Assignment 9
+
+### `For` Loops and `If` Statements
+
+1. Using a `for` loop and an `if` statement, write a function to calculate the number of zeroes in a numeric vector. Before entering the loop, set up a vector of integers with some zero values. Then, set up a counter variable counter <- 0. Inside the loop, add 1 to counter each time you have a zero in the vector. Finally, use return(counter) for the output.
+```{r}
+vec<-(round(runif(n=50, min=0, max=1)))
+vecfn<-function(vector){
+  counter<-0
+  for(i in 1:length(vector)){
+  if (vector[i]==0) {counter<-counter+1}
+  }
+  return(counter)
+}
+vecfn(vec)
+
+```
+
+
+2. Write a function that takes as input two integers representing the number of rows and columns in a matrix. The output is a matrix of these dimensions in which each element is the product of the row number x the column number.
+```{r}
+
+intmate<-function(int1, int2){ #argument of fn is a placeholder for what the fn is going to take
+  mate<-matrix(nrow=int1, ncol=int2)
+  for(i in 1:nrow(mate)){
+    for(j in 1:ncol(mate)){
+      mate[i,j] <- i*j
+    } # end of column j loop
+  }
+  return(mate)
+}
+
+intmate(3,4)
+
+
+```
+
+
+3. Use a for loop to repeat your previous functions from Weekly Assignment 2 (which simulate a data frame and extract a p-value) 100 times. Store the results in a data frame that has 1 column indicating the replicate number and 1 column for the p-values (a total of 2 columns and 100 rows)
+```{r eval=FALSE}
+df_func<-function(means=c(mean1,mean2),sds=c(sd1,sd2)){
+Type<-rep(c("Control", "Treatment"), each=25)
+Value<-c(rnorm(n=25, mean=mean1, sd=sd1),(rnorm(n=25, mean=mean2, sd=sd2)))
+typevalue_df<-data.frame(Type, Value, stringsAsFactors = FALSE)
+return(typevalue_df)
+}
+q1df<-df_func()
+ANOVA_Test<-aov(Value ~ Type, data=q1df)
+pvalue_func<-function(data=NULL){
+  p<-summary(ANOVA_Test)[[1]][["Pr(>F)"]][1]
+  return(p)
+}
+for (i in 1:100){
+  print(df_func)
+  cat(3+2, "\n") # has nothing to do with which iteration you're in, will always produce the same value (5) in the loop
+  cat(3+i, "\n")}
+
+```
+
+
+

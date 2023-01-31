@@ -12,7 +12,7 @@
 
 <meta name="author" content="Abigail Griffin" />
 
-<meta name="date" content="2023-01-26" />
+<meta name="date" content="2023-01-31" />
 
 <title>2023-01-26 Loading in Data</title>
 
@@ -151,7 +151,7 @@ code span.ot { color: #007020; }
 <div class="inner">
 <h1 class="title toc-ignore">2023-01-26 Loading in Data</h1>
 <h3 class="author">Abigail Griffin</h3>
-<h3 class="date">2023-01-26</h3>
+<h3 class="date">2023-01-31</h3>
 </div>
 </header>
 
@@ -320,7 +320,7 @@ do not repeat in the ID column</li>
 ## $ wk76         &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>b1<span class="ot">&lt;-</span>billboard <span class="sc">%&gt;%</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span> (</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span> (<span class="st">&quot;wk&quot;</span>), <span class="co">#cols = : specify which columns you want to make longer</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span> (<span class="st">&quot;wk&quot;</span>), <span class="co">#cols = : specify which columns you want to make longer - put them in a row</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_to =</span> <span class="st">&quot;Week&quot;</span>, <span class="co"># name of new column which will contain the header names</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_to =</span> <span class="st">&quot;Rank&quot;</span>, <span class="co"># name of new column which will contain the values</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_drop_na =</span> <span class="cn">TRUE</span>) <span class="co"># excludes any rows which have NA</span></span>
@@ -413,7 +413,7 @@ here.</a></li>
 ##   44.83   99.50  116.50  125.96  183.17  197.00</code></pre>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(dryadData<span class="sc">$</span>species)</span></code></pre></div>
 <pre><code>##  chr [1:132] &quot;RASY&quot; &quot;RASY&quot; &quot;RASY&quot; &quot;RASY&quot; &quot;RASY&quot; &quot;RASY&quot; &quot;RASY&quot; &quot;RASY&quot; &quot;RASY&quot; ...</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>dryadData<span class="sc">$</span>species<span class="ot">&lt;-</span><span class="fu">factor</span>(dryadData<span class="sc">$</span>species, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;Spotted Salamander&quot;</span>, <span class="st">&quot;Wood Frog&quot;</span>)) <span class="co">#creating &#39;labels&#39; to use for the plot</span></span>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>dryadData<span class="sc">$</span>species<span class="ot">&lt;-</span><span class="fu">factor</span>(dryadData<span class="sc">$</span>species, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;Spotted Salamander&quot;</span>, <span class="st">&quot;Wood Frog&quot;</span>)) <span class="co"># creating &#39;labels&#39; to use for the plot</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(dryadData<span class="sc">$</span>treatment)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>dryadData<span class="sc">$</span>treatment <span class="ot">&lt;-</span> <span class="fu">factor</span>(dryadData<span class="sc">$</span>treatment, </span>
