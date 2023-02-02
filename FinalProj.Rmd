@@ -8,7 +8,7 @@ output:
     highlight: github
 ---
 ### Part 1 - My Project
-For my final project, I chose to create a [personal website]((https://abbygriffin4.github.io). I’m hoping to use it as a supplementary material to apply to jobs in the future and as a way to keep my coding and Git skills up to date!
+For my final project, I chose to create a [personal website](https://abbygriffin4.github.io). I’m hoping to use it as a supplementary material to apply to jobs in the future and as a way to keep my coding and Git skills up to date!
 
 ### Part 2 - How I did it
 I ran into several errors while trying to create this website. I began by trying to download aesthetically pleasing/seemingly simple Jekyll themes from various sites, but many of them required something called RubyGem to manually install the theme. I attempted to do manual install in a variety of different ways but ultimately, my computer was not able to access the Ruby library. So, my process looked a little something like this:    
