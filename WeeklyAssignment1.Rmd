@@ -30,7 +30,7 @@ output:
 ![](images/pt2step3.png){width=50%}   
 4. You can **name** your repository "TrialRepo". Add something like "This is a trial repo as I learn how to use GitHub" to the **Description**. Make the repo **public**, select **"Add a README file"**, leave **gitignore: none**, and **add a MIT License** (this license ensures that no one can monetize your repo).   
 ![](images/pt2step4.png){width=50%}    
-5. Click on your **profile picture** in the upper right corner to view a dropdown menu, then **select Settings**->**< > Developer Settings** (the last option in the left panel) ->**Personal Access Tokens**-> **Tokens (classic)** -> **Generate new (classic)** -> add a **Note** (what this token is for): e.g. BIOL1007A -> add **Custom Expiration Date** of 12/31/23 -> check **repo** -> **Create Repository**. Copy your PAT and save it in a safe place or email it to yourself.    
+5. Click on your **profile picture** in the upper right corner to view a dropdown menu, then **select Settings**->**< > Developer Settings** (the last option in the left panel) ->**Personal Access Tokens**-> **Tokens (classic)** -> **Generate new (classic)** -> add a **Note** (what this token is for): e.g. BIOL1007A -> add **Custom Expiration Date** of 12/31/23 -> check **repo** -> **Generate Token**. Copy your PAT and save it in a safe place or email it to yourself.    
 ![](images/pt2step51.png){width=50%}     
 ![](images/pt2step5.png){width=50%}    
 6. Navigate to your repo and click **< > Code**, then copy the HTTPS.  

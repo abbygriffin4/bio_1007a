@@ -1,0 +1,70 @@
+---
+title: "Final Project"
+author: "Abigail Griffin"
+date: "`r Sys.Date()`"
+output:
+    prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+---
+For my final project, I have chosen to reproduce some graphs from past Biology classes and ones that I use in my research. 
+
+Graph 1 from "Hindrance of Plastoquinone Photosynthetic Activity in *Spinacea oleracea* Chloroplasts by the Herbicide Atrazine", BIOL 0145, Spring 2020.
+1. First, I had to find my old data, clean it up by rearranging the rows/columns so it would be easier to make a data frame as well as delete any extra data calculations off to the side. I exported this cleaned data as a .csv to my 'data' folder in my project directory.
+![What my clean data looks like](images/finalprojpics/1.png){width=50%}
+
+2. Now, I'm going to import my data to RStudio and do the same analyses I had to do in Excel.
+```{r}
+library(dplyr)
+ATZData<-read.table(file="data/griffin_atrazine_photosynthesis.csv", header=TRUE, sep = ",")
+```
+
+2. Find the mean absorbance for each time point and create a new df with these values
+``` {r}
+# I tried this first, but it seemed like there had to be a simpler way, plus R would not let me use a numeric operator (+) on a non-numeric argument:
+# ATZData_avg<- summarize(aggregate(ATZData$X0, list(ATZData$Sample), FUN=mean) +
+# aggregate(ATZData$X3, list(ATZData$Sample), FUN=mean) +
+# aggregate(ATZData$X6, list(ATZData$Sample), FUN=mean) +
+# aggregate(ATZData$X9, list(ATZData$Sample), FUN=mean) +
+# aggregate(ATZData$X12, list(ATZData$Sample), FUN=mean) +
+# aggregate(ATZData$X15, list(ATZData$Sample), FUN=mean))
+
+# Then I successfully bound together the data by time (y) and separated the mean at each time by sample
+
+ATZData_avg<-aggregate(cbind(X0,X3,X6,X9,X12,X15) ~ Sample, data = ATZData, FUN = mean, na.rm = TRUE)
+
+
+```
+
+3. This is the same table I have in Excel, but I ran some statistical analyses on the data to double check.
+```{r}
+summary(ATZData_avg)
+glimpse(ATZData_avg)
+```
+
+4. Now I'm going to plot my data using `geom_point`.
+```{r}
+library(ggplot2)
+library(ggthemes)
+
+
+ATZData_longer <- ATZData_avg %>%
+  pivot_longer(X0:X15), names_to = "time", values_to = "absorbance") 
+print(longer_data)
+
+library(plyr)
+ATZData_renamed<-plyr::rename(ATZData_longer, c(X0 = 0,
+       X3 = 3,
+       X6 = 6,
+       X9 = 9,
+       X12 = 12,
+       X15 = 15)) # had to load plyr package in order for me to stop receiving "these columns don't exist" error
+ATZData_renamed$time <- as.numeric(as.character(ATZData_renamed$time))
+
+
+as.numeric(ATZData_renamed, time)
+ggplot(ATZData_renamed, aes(time, absorbance) +
+         geom_point())
+```
+
+

@@ -24,12 +24,17 @@ My name is Abby Griffin (she/her) and I am a student in Reproducible Biology in 
 [Assignment 6](Assignment6.html)  
 [Assignment 7](Assignment7.html)  
 [Assignment 8](Assignment8.html)  
+[Assignment 9](Assignment9.html)    
 
 ## Weekly Assignments  
 [Weekly Assignment #1](WeeklyAssignment1.html)  
 [Weekly Assignment #2](WeeklyAssignment2.html)  
 [Weekly Assignment #3](WeeklyAssignment3.html)   
-[Weekly Assignment #4](WeeklyAssignment4.html)  
+[Weekly Assignment #4](WeeklyAssignment4.html)    
+
+## Final Assignment
+[See my personal website here!](https://abbygriffin4.github.io)    
+[How I created it](FinalProj.html)    
 
 ## Class Notes
 [Scripting in R 01-12-2023](2023-01-12-Scripting-in-R.R)    
