@@ -6,21 +6,23 @@ output:
   prettydoc::html_pretty:
     theme: architect
     highlight: github
+editor_options: 
+  chunk_output_type: console
 ---
 ## Daily Assignment 5
 
 ### 2: Create a list with the following named elements:
 #### `my_matrix`, which is a 4 x 4 matrix filled with random uniform values, my_logical which is a 100-element vector of TRUE or FALSE values. You can do this efficiently by setting up a vector of random values and then applying an inequality to it., my_letters, which is a 26-element vector of all the lower-case letters in random order.
 ```{r}
-my_data<-runif(n=16, min=0, max=20)
-my_matrix<-matrix(data=my_data,nrow=4, ncol=4)
+my_data<-runif(n=16, min=0, max=20) # create a vector of 16 random uniform values between 0 and 20
+my_matrix<-matrix(data=my_data,nrow=4, ncol=4) # create 4x4 matrix
 print(my_matrix)
 
-random_numbers<-runif(n=100, min=0, max=100)
-my_logical<- random_numbers>50
+random_numbers<-runif(n=100, min=0, max=100) # assign 100 random uniform numbers to random_numbers
+my_logical<- random_numbers>50 # logical statement which returns T if value > 50
 
-my_letters<-c(letters[1:26]) ## is this still a list?
-my_letters<-sample(my_letters)
+my_letters<-c(letters[1:26]) # combine letters 1-26 of the alphabet into a list
+my_letters<-sample(my_letters) # randomize these letters
 typeof(my_letters)
 
 assignment5_list<-list(my_matrix, my_logical, my_letters)
@@ -60,12 +62,12 @@ my_unifs<-runif(n=26, min=0, max=10) # create a list of 26 random uniform number
 print(my_unifs)
 
 my_letters<-sample(letters[1:26]) # create a list of 26 letters in random order
-toupper(my_letters) # capitalize these letters
-print(my_letters)
+myupper_letters<-toupper(my_letters) # capitalize these letters and assign to new name
+print(myupper_letters)
 ```
    + for the first variable, use a single line of code in R to select 4 random rows and replace the numerical values in those rows with NA.
 ```{r}
-q3df<-data.frame(my_unifs, my_letters, stringsAsFactors = FALSE) # create a data frame of these two vectors
+q3df<-data.frame(my_unifs, myupper_letters, stringsAsFactors = FALSE) # create a data frame of these two vectors
 print(q3df)
 
 set.seed(1) # keep these random values
@@ -79,7 +81,7 @@ q3df[is.na(q3df$my_unifs),] # tell me which rows have NA values
    + re-order the entire data frame to arrange the second variable in alphabetical order.
 
 ```{r}
-abc_q3df<-q3df[order(q3df$my_letters), ] # now alphabetize this vector # descending=TRUE would flip the way it ordered it
+abc_q3df<-q3df[order(q3df$myupper_letters), ] # now alphabetize this vector # descending=TRUE would flip the way it ordered it
 print(abc_q3df)
 ```
    + calculate the column mean for the first variable.
@@ -88,7 +90,7 @@ mean(abc_q3df$my_unifs, na.rm=TRUE) # what is the mean of the first variable? # 
 ```
    + rename the second column ‘my_LETTERS’
 ```{r}
-colnames(abc_q3df)[colnames(abc_q3df) == "my_letters"] ="my_LETTERS" # rename the column
+colnames(abc_q3df)[colnames(abc_q3df) == "myupper_letters"] ="my_LETTERS" # rename the column
 print(abc_q3df)
 ```
 

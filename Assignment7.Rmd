@@ -52,20 +52,20 @@ print(starwars_heightsummary)
 ```{r}
 library(ggplot2)
 library(viridis)
-cols<-viridis(8, option = "magma")
-starwars_heightboxplot<-ggplot(data=cleanstarwars_height, aes(x=species,y=height, fill=species)) +
-  geom_boxplot() +
-  scale_fill_manual(values=cols) +
-  xlab("Species") + # add x axis label
-  ylab("Height (cm)") +
-  theme_minimal(base_size=10)
+cols<-viridis(8, option = "magma") # assign 8 different "magma" color options from viridis package to "cols" so I can call it to fill the species key colors
+starwars_heightboxplot<-ggplot(data=cleanstarwars_height, aes(x=species,y=height, fill=species)) + # ggplot code structure
+  geom_boxplot() + # create a boxplot
+  scale_fill_manual(values=cols) + # fill scale colors with "magma" from viridis, as assigned above
+  xlab("Species") + # add "Species" as x axis label
+  ylab("Height (cm)") + # add "Height (cm)" as y axis label
+  theme_minimal(base_size=10) # add minimalist theme (no background) and set base font size as 10
 print(starwars_heightboxplot)
 ```
 
 *For an extra (optional) challenge*: overlay the data points onto the box plots (hint: look into geom_jitter or geom_point). See if you can change the color of the points, depending on the gender or sex variables.   
 ```{r}
 starwars_heightboxplot +
-  geom_jitter(aes(colour = gender))
+  geom_jitter(aes(colour = gender)) # trying both geom_jitter and geom_point
 
 starwars_heightboxplot +
   geom_point(aes(colour = sex))
@@ -100,7 +100,7 @@ ucb_table<-transform(ftable2df(ftable(UCBAdmissions, row.vars = 3:2)),
   Applications = Admitted + Rejected)
 
 ucb_admit_plot<-ggplot(data=ucb_table, aes(x=Dept, y=Admitted, fill=Gender)) +
-  geom_col(position=position_dodge()) +# creating a bar plot to compare # of admits based on sex
+  geom_col(position=position_dodge()) + # creating a bar plot to compare # of admits based on sex
   xlab("Department") + # add x axis label
   ylab("# of Admits") +
   labs(title="UCB Admission to Department By Sex") +
@@ -128,6 +128,6 @@ print(cwavg_scatter)
 Finally, create a multi-panel figure with the graphs you created.  
 ```{r}
 library(patchwork)
-print(starwars_heightboxplot / i1)
+print(starwars_heightboxplot / i1) # division symbol puts plots over one another
 print(ucb_admit_plot / cwavg_scatter)
 ```

@@ -24,6 +24,7 @@ print(vector)
 #### b: Use the sample function to randomly reshuffle these values.
 ```{r}
 randomvector <- sample(vector)
+print(randomvector)
 ```
 #### c: create a square matrix with these elements. Print out the matrix.
 ```{r}

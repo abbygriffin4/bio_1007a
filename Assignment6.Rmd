@@ -54,7 +54,7 @@ print(iris5)
 ```
 ### 8: In these exercises, you have successively modified different versions of the data frame iris1 iris2 iris3 iris4 iris5. At each stage, the output data frame from one operation serves as the input for the next. A more efficient way to do this is to use the pipe operator %>% from the tidyr package. Rework all of your previous statements (except for irisTab) into an extended piping operation that uses iris as the input and generates irisFinal as the output.
 ```{r}
-pipingfinal<-iris %>%
+irisFinal<-iris %>%
   filter(Species=="virginica" | Species=="versicolor", Sepal.Length>6, Sepal.Width>2.5) %>% # answer key used %in% operator 
   select(Species, Sepal.Length, Sepal.Width) %>%
   arrange(by=desc(Sepal.Length)) %>%
@@ -63,6 +63,6 @@ pipingfinal<-iris %>%
   summarize(meanSepal.Length=mean(Sepal.Length, na.rm=TRUE), meanSepal.Width=mean(Sepal.Width, na.rm=TRUE), SampleSize=n())
   
 
-print(pipingfinal)
+print(irisFinal)
 ```
 

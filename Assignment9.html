@@ -12,7 +12,7 @@
 
 <meta name="author" content="Abigail Griffin" />
 
-<meta name="date" content="2023-01-31" />
+<meta name="date" content="2023-02-03" />
 
 <title>Assignment 9</title>
 
@@ -151,7 +151,7 @@ code span.ot { color: #007020; }
 <div class="inner">
 <h1 class="title toc-ignore">Assignment 9</h1>
 <h3 class="author">Abigail Griffin</h3>
-<h3 class="date">2023-01-31</h3>
+<h3 class="date">2023-02-03</h3>
 </div>
 </header>
 
@@ -172,15 +172,18 @@ values. Then, set up a counter variable counter &lt;- 0. Inside the
 loop, add 1 to counter each time you have a zero in the vector. Finally,
 use return(counter) for the output.</li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>vec<span class="ot">&lt;-</span>(<span class="fu">round</span>(<span class="fu">runif</span>(<span class="at">n=</span><span class="dv">50</span>, <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">1</span>)))</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>vecfn<span class="ot">&lt;-</span><span class="cf">function</span>(vector){</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  counter<span class="ot">&lt;-</span><span class="dv">0</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(vector)){</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (vector[i]<span class="sc">==</span><span class="dv">0</span>) {counter<span class="ot">&lt;-</span>counter<span class="sc">+</span><span class="dv">1</span>}</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(counter)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">vecfn</span>(vec)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>vec<span class="ot">&lt;-</span>(<span class="fu">round</span>(<span class="fu">runif</span>(<span class="at">n=</span><span class="dv">50</span>, <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">1</span>))) <span class="co"># create a vector of 50 rounded random uniform numbers between 0 and 1 </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vec)</span></code></pre></div>
+<pre><code>##  [1] 1 1 1 1 1 0 0 1 0 1 0 1 1 1 1 0 0 0 1 1 0 0 1 1 0 0 0 0 1 1 1 0 1 1 0 0 0 0
+## [39] 0 0 0 1 0 0 0 0 0 1 0 1</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>vecfn<span class="ot">&lt;-</span><span class="cf">function</span>(vector){</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  counter<span class="ot">&lt;-</span><span class="dv">0</span> <span class="co"># assign 0 to counter</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(vector)){ <span class="co"># if the value of the &#39;ith&#39; iteration is 0, add 1 to counter</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (vector[i]<span class="sc">==</span><span class="dv">0</span>) {counter<span class="ot">&lt;-</span>counter<span class="sc">+</span><span class="dv">1</span>}</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(counter) <span class="co"># print the counter, which counted how many zeros were present</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">vecfn</span>(vec) <span class="co"># run function with my vector</span></span></code></pre></div>
 <pre><code>## [1] 27</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Write a function that takes as input two integers representing the
@@ -188,17 +191,17 @@ number of rows and columns in a matrix. The output is a matrix of these
 dimensions in which each element is the product of the row number x the
 column number.</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>intmate<span class="ot">&lt;-</span><span class="cf">function</span>(int1, int2){ <span class="co">#argument of fn is a placeholder for what the fn is going to take</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  mate<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="at">nrow=</span>int1, <span class="at">ncol=</span>int2)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(mate)){</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(mate)){</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      mate[i,j] <span class="ot">&lt;-</span> i<span class="sc">*</span>j</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    } <span class="co"># end of column j loop</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(mate)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">intmate</span>(<span class="dv">3</span>,<span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>intmate<span class="ot">&lt;-</span><span class="cf">function</span>(int1, int2){ <span class="co"># argument of fn is the placeholder for what the fn is going to take, this fn will take (int1, int2)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  mate<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="at">nrow=</span>int1, <span class="at">ncol=</span>int2) <span class="co"># create a matrix named &quot;mate&quot; where the number of rows is = int1 and columns = int2</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(mate)){</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(mate)){</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>      mate[i,j] <span class="ot">&lt;-</span> i<span class="sc">*</span>j <span class="co"># for the ith row and jth column of my matrix &quot;mate&quot;, multiply the row number * column number. in other words, the value of [i,j] is i*j.</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    } <span class="co"># end of column j loop</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(mate) <span class="co"># print this matrix</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Let&#39;s try it out:</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">intmate</span>(<span class="dv">3</span>,<span class="dv">4</span>)</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4]
 ## [1,]    1    2    3    4
 ## [2,]    2    4    6    8
@@ -210,22 +213,185 @@ times. Store the results in a data frame that has 1 column indicating
 the replicate number and 1 column for the p-values (a total of 2 columns
 and 100 rows)</li>
 </ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_func<span class="ot">&lt;-</span><span class="cf">function</span>(<span class="at">means=</span><span class="fu">c</span>(mean1,mean2),<span class="at">sds=</span><span class="fu">c</span>(sd1,sd2)){</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Type<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Treatment&quot;</span>), <span class="at">each=</span><span class="dv">25</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Value<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">25</span>, <span class="at">mean=</span>mean1, <span class="at">sd=</span>sd1),(<span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">25</span>, <span class="at">mean=</span>mean2, <span class="at">sd=</span>sd2)))</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>typevalue_df<span class="ot">&lt;-</span><span class="fu">data.frame</span>(Type, Value, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>(typevalue_df)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>q1df<span class="ot">&lt;-</span><span class="fu">df_func</span>()</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>ANOVA_Test<span class="ot">&lt;-</span><span class="fu">aov</span>(Value <span class="sc">~</span> Type, <span class="at">data=</span>q1df)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>pvalue_func<span class="ot">&lt;-</span><span class="cf">function</span>(<span class="at">data=</span><span class="cn">NULL</span>){</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  p<span class="ot">&lt;-</span><span class="fu">summary</span>(ANOVA_Test)[[<span class="dv">1</span>]][[<span class="st">&quot;Pr(&gt;F)&quot;</span>]][<span class="dv">1</span>]</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(p)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>){</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(df_func)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="dv">3</span><span class="sc">+</span><span class="dv">2</span>, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="co"># has nothing to do with which iteration you&#39;re in, will always produce the same value (5) in the loop</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="dv">3</span><span class="sc">+</span>i, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)}</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_func<span class="ot">&lt;-</span><span class="cf">function</span>(<span class="at">means=</span><span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">45</span>),<span class="at">sds=</span><span class="fu">c</span>(<span class="fl">1.5</span>,<span class="dv">2</span>)){</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Type<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Treatment&quot;</span>), <span class="at">each=</span><span class="dv">25</span>) <span class="co"># create first column with 25 lines of both treatment and control</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>Value<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">25</span>, <span class="at">mean=</span>means[<span class="dv">1</span>], <span class="at">sd=</span>sds[<span class="dv">1</span>]),(<span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">25</span>, <span class="at">mean=</span>means[<span class="dv">2</span>], <span class="at">sd=</span>sds[<span class="dv">2</span>]))) <span class="co"># create second column with random values which also fit mean/sd criteria</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>typevalue_df<span class="ot">&lt;-</span><span class="fu">data.frame</span>(Type, Value, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>) <span class="co"># create df with &quot;Type&quot; and &quot;Value&quot; columns</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>(typevalue_df) <span class="co"># return df please</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">df_func</span>()</span></code></pre></div>
+<pre><code>##         Type     Value
+## 1    Control 11.754205
+## 2    Control  7.811502
+## 3    Control 10.334977
+## 4    Control 10.332325
+## 5    Control  9.812150
+## 6    Control 10.834477
+## 7    Control  9.724351
+## 8    Control 11.209358
+## 9    Control 11.227937
+## 10   Control 12.647590
+## 11   Control  7.912117
+## 12   Control 11.455070
+## 13   Control 11.278742
+## 14   Control  9.685053
+## 15   Control 11.585512
+## 16   Control  9.678881
+## 17   Control 11.628725
+## 18   Control 11.963833
+## 19   Control 11.741913
+## 20   Control  9.172467
+## 21   Control  7.817881
+## 22   Control  8.780888
+## 23   Control  9.467445
+## 24   Control 11.769507
+## 25   Control  7.681951
+## 26 Treatment 46.166363
+## 27 Treatment 44.767956
+## 28 Treatment 48.913806
+## 29 Treatment 44.594744
+## 30 Treatment 46.648383
+## 31 Treatment 43.336227
+## 32 Treatment 47.165618
+## 33 Treatment 43.880686
+## 34 Treatment 42.266466
+## 35 Treatment 45.214471
+## 36 Treatment 43.550366
+## 37 Treatment 43.240048
+## 38 Treatment 46.805281
+## 39 Treatment 46.342233
+## 40 Treatment 45.402572
+## 41 Treatment 47.087675
+## 42 Treatment 49.079082
+## 43 Treatment 45.201057
+## 44 Treatment 43.594040
+## 45 Treatment 44.455794
+## 46 Treatment 48.173458
+## 47 Treatment 45.065747
+## 48 Treatment 45.779263
+## 49 Treatment 43.428095
+## 50 Treatment 46.802873</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>q1df<span class="ot">&lt;-</span><span class="fu">df_func</span>()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>ANOVA_Test<span class="ot">&lt;-</span><span class="fu">aov</span>(Value <span class="sc">~</span> Type, <span class="at">data=</span>q1df)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>pvalue_func<span class="ot">&lt;-</span><span class="cf">function</span>(<span class="at">data=</span><span class="cn">NULL</span>){</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  p<span class="ot">&lt;-</span><span class="fu">summary</span>(ANOVA_Test)[[<span class="dv">1</span>]][[<span class="st">&quot;Pr(&gt;F)&quot;</span>]][<span class="dv">1</span>]</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(p)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>pval<span class="ot">&lt;-</span><span class="fu">pvalue_func</span>(<span class="at">data=</span>ANOVA_Test) <span class="co"># assign the name pval to the pvalue returned from my ANOVA_Test</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>newdf<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="at">y=</span><span class="cn">NA</span>) <span class="co"># create a new df where the first row is the replicate number and the second row is NA&#39;s which will be filled with p values following the for loop.</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>){</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  q1df<span class="ot">&lt;-</span><span class="fu">df_func</span>() <span class="co"># run this function df_func() and assign it to the name &#39;q1df&#39;</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  ANOVA_Test<span class="ot">&lt;-</span><span class="fu">aov</span>(Value <span class="sc">~</span> Type, <span class="at">data=</span>q1df) <span class="co"># run an ANOVA based on my q1df data</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  pval<span class="ot">&lt;-</span><span class="fu">pvalue_func</span>(<span class="at">data=</span>ANOVA_Test) <span class="co"># run the function that finds the pvalue of the ANOVA data and assign this to &#39;pval&#39;</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  newdf[i,<span class="dv">2</span>] <span class="ot">&lt;-</span> pval <span class="co"># in my newdf, place pval in the ith row, 2nd column (which previously was filled with NA&#39;s)</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(newdf)</span></code></pre></div>
+<pre><code>##       x            y
+## 1     1 1.782081e-52
+## 2     2 3.357211e-46
+## 3     3 6.572586e-53
+## 4     4 6.312704e-52
+## 5     5 8.032815e-49
+## 6     6 5.348627e-52
+## 7     7 1.154582e-49
+## 8     8 1.017143e-48
+## 9     9 1.030922e-50
+## 10   10 8.407049e-51
+## 11   11 2.807252e-51
+## 12   12 2.334892e-51
+## 13   13 1.934957e-54
+## 14   14 8.008012e-51
+## 15   15 5.326602e-52
+## 16   16 7.360820e-48
+## 17   17 2.736269e-53
+## 18   18 1.782552e-50
+## 19   19 3.309446e-56
+## 20   20 3.235137e-51
+## 21   21 1.464995e-47
+## 22   22 7.562337e-52
+## 23   23 2.047105e-49
+## 24   24 4.480968e-49
+## 25   25 7.677387e-53
+## 26   26 4.028395e-48
+## 27   27 1.722558e-50
+## 28   28 2.524193e-49
+## 29   29 1.970511e-49
+## 30   30 1.383643e-50
+## 31   31 1.198036e-52
+## 32   32 1.927377e-48
+## 33   33 8.958382e-53
+## 34   34 3.160898e-49
+## 35   35 9.772467e-49
+## 36   36 6.234822e-52
+## 37   37 1.468622e-48
+## 38   38 9.676964e-46
+## 39   39 1.239001e-52
+## 40   40 2.811649e-47
+## 41   41 4.499068e-47
+## 42   42 1.847507e-52
+## 43   43 1.151166e-51
+## 44   44 1.044711e-48
+## 45   45 4.451606e-50
+## 46   46 1.289827e-50
+## 47   47 1.209629e-51
+## 48   48 3.359060e-50
+## 49   49 5.968687e-49
+## 50   50 6.022259e-49
+## 51   51 2.449708e-47
+## 52   52 2.084482e-53
+## 53   53 1.014371e-48
+## 54   54 5.093343e-50
+## 55   55 1.233959e-49
+## 56   56 2.015668e-48
+## 57   57 3.064295e-48
+## 58   58 2.886313e-48
+## 59   59 8.404702e-55
+## 60   60 1.061862e-47
+## 61   61 1.338889e-48
+## 62   62 1.796224e-46
+## 63   63 6.382850e-47
+## 64   64 4.573198e-49
+## 65   65 2.275589e-49
+## 66   66 3.807363e-49
+## 67   67 2.063752e-54
+## 68   68 6.133436e-50
+## 69   69 2.663031e-51
+## 70   70 4.625843e-54
+## 71   71 2.025303e-48
+## 72   72 9.112913e-49
+## 73   73 1.999268e-48
+## 74   74 5.420352e-50
+## 75   75 2.860549e-48
+## 76   76 4.151040e-53
+## 77   77 2.757620e-50
+## 78   78 3.489610e-50
+## 79   79 6.513822e-49
+## 80   80 9.997496e-53
+## 81   81 5.081333e-51
+## 82   82 2.601577e-48
+## 83   83 1.272695e-49
+## 84   84 7.223176e-47
+## 85   85 6.519679e-49
+## 86   86 5.999393e-49
+## 87   87 2.419908e-49
+## 88   88 3.587501e-48
+## 89   89 3.580738e-49
+## 90   90 1.084367e-47
+## 91   91 1.125004e-48
+## 92   92 4.074579e-52
+## 93   93 1.579765e-47
+## 94   94 3.703953e-51
+## 95   95 1.535653e-52
+## 96   96 3.044492e-52
+## 97   97 7.254522e-50
+## 98   98 1.283364e-52
+## 99   99 6.663784e-52
+## 100 100 2.442938e-46</code></pre>
 </div>
 </div>
     </section>

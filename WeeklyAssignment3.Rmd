@@ -12,8 +12,9 @@ editor_options:
 ## Weekly Assignment #3
 
 ### 1: Go to Dryad to choose a published paper and data set and reconstruct your own figure. Code a ggplot graph that looks as close to the published figure as you can.
-Adding some finishing touches, but here's my work thus far...
-See [**Figure 1**](https://onlinelibrary.wiley.com/doi/full/10.1002/ece3.7209) from Race, AI, De Jesus, M, Beltran, RS, Zavaleta, ES. A comparative study between outcomes of an in-person versus online introductory field course. Ecol Evol. 2021; 11: 3625– 3635. https://doi.org/10.1002/ece3.7209.
+See [**Figure 1**](https://onlinelibrary.wiley.com/doi/full/10.1002/ece3.7209) from Race, AI, De Jesus, M, Beltran, RS, Zavaleta, ES. A comparative study between outcomes of an in-person versus online introductory field course. Ecol Evol. 2021; 11: 3625– 3635. https://doi.org/10.1002/ece3.7209.    
+
+![](images/raceetal2021.jpeg){width=50%}
 
 
 ```{r}
@@ -48,6 +49,6 @@ panel.grid.minor = element_blank(), axis.line.x = element_blank(), axis.line.y=e
         legend.justification='left',
         legend.direction='vertical')
 print(classoutcomes_plot)
-
+# I noticed that my bar graph values look a little different than those in Fig 1... some don't line up with all of the data in the Dryad set (see Grad School Interest, Science Career Interest, Research Opportunities). I'm very curious as to what is going on here!
 ```
 

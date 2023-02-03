@@ -12,7 +12,7 @@
 
 <meta name="author" content="Abigail Griffin" />
 
-<meta name="date" content="2023-01-31" />
+<meta name="date" content="2023-02-03" />
 
 <title>Assignment6</title>
 
@@ -151,7 +151,7 @@ code span.ot { color: #007020; }
 <div class="inner">
 <h1 class="title toc-ignore">Assignment6</h1>
 <h3 class="author">Abigail Griffin</h3>
-<h3 class="date">2023-01-31</h3>
+<h3 class="date">2023-02-03</h3>
 </div>
 </header>
 
@@ -283,7 +283,7 @@ next. A more efficient way to do this is to use the pipe operator %&gt;%
 from the tidyr package. Rework all of your previous statements (except
 for irisTab) into an extended piping operation that uses iris as the
 input and generates irisFinal as the output.</h3>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>pipingfinal<span class="ot">&lt;-</span>iris <span class="sc">%&gt;%</span></span>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>irisFinal<span class="ot">&lt;-</span>iris <span class="sc">%&gt;%</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Species<span class="sc">==</span><span class="st">&quot;virginica&quot;</span> <span class="sc">|</span> Species<span class="sc">==</span><span class="st">&quot;versicolor&quot;</span>, Sepal.Length<span class="sc">&gt;</span><span class="dv">6</span>, Sepal.Width<span class="sc">&gt;</span><span class="fl">2.5</span>) <span class="sc">%&gt;%</span> <span class="co"># answer key used %in% operator </span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Species, Sepal.Length, Sepal.Width) <span class="sc">%&gt;%</span></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="at">by=</span><span class="fu">desc</span>(Sepal.Length)) <span class="sc">%&gt;%</span></span>
@@ -292,7 +292,7 @@ input and generates irisFinal as the output.</h3>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">meanSepal.Length=</span><span class="fu">mean</span>(Sepal.Length, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="at">meanSepal.Width=</span><span class="fu">mean</span>(Sepal.Width, <span class="at">na.rm=</span><span class="cn">TRUE</span>), <span class="at">SampleSize=</span><span class="fu">n</span>())</span>
 <span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pipingfinal)</span></code></pre></div>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(irisFinal)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 4
 ##   Species    meanSepal.Length meanSepal.Width SampleSize
 ##   &lt;fct&gt;                 &lt;dbl&gt;           &lt;dbl&gt;      &lt;int&gt;

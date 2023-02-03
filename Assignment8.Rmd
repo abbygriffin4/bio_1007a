@@ -13,9 +13,10 @@ output:
 
 #### Code Reflection
 1. Go through your recent assignments and the posted solutions (Assignment 6 posted solutions and Weekly Assignment 2 solutions) - compare your code to the posted code.
-* Can you run your simulated data function with new values for the means? If not, what do you need to change about your code?
-# Yes I can.
+* Can you run your simulated data function with new values for the means? If not, what do you need to change about your code?   
+ + Yes I can.
 * Are there differences between the posted code and yours? Did you notice you were missing anything?
+  + Yes and annotated changes on document.
 * Make sure you annotate your code using # and leave brief descriptions of your thought process.
 
 

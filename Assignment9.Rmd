@@ -13,15 +13,17 @@ output:
 
 1. Using a `for` loop and an `if` statement, write a function to calculate the number of zeroes in a numeric vector. Before entering the loop, set up a vector of integers with some zero values. Then, set up a counter variable counter <- 0. Inside the loop, add 1 to counter each time you have a zero in the vector. Finally, use return(counter) for the output.
 ```{r}
-vec<-(round(runif(n=50, min=0, max=1)))
+vec<-(round(runif(n=50, min=0, max=1))) # create a vector of 50 rounded random uniform numbers between 0 and 1 
+print(vec)
+
 vecfn<-function(vector){
-  counter<-0
-  for(i in 1:length(vector)){
+  counter<-0 # assign 0 to counter
+  for(i in 1:length(vector)){ # if the value of the 'ith' iteration is 0, add 1 to counter
   if (vector[i]==0) {counter<-counter+1}
   }
-  return(counter)
+  return(counter) # print the counter, which counted how many zeros were present
 }
-vecfn(vec)
+vecfn(vec) # run function with my vector
 
 ```
 
@@ -29,39 +31,50 @@ vecfn(vec)
 2. Write a function that takes as input two integers representing the number of rows and columns in a matrix. The output is a matrix of these dimensions in which each element is the product of the row number x the column number.
 ```{r}
 
-intmate<-function(int1, int2){ #argument of fn is a placeholder for what the fn is going to take
-  mate<-matrix(nrow=int1, ncol=int2)
+intmate<-function(int1, int2){ # argument of fn is the placeholder for what the fn is going to take, this fn will take (int1, int2)
+  mate<-matrix(nrow=int1, ncol=int2) # create a matrix named "mate" where the number of rows is = int1 and columns = int2
   for(i in 1:nrow(mate)){
     for(j in 1:ncol(mate)){
-      mate[i,j] <- i*j
+      mate[i,j] <- i*j # for the ith row and jth column of my matrix "mate", multiply the row number * column number. in other words, the value of [i,j] is i*j.
     } # end of column j loop
   }
-  return(mate)
+  return(mate) # print this matrix
 }
-
+# Let's try it out:
 intmate(3,4)
 
 ```
 
 
 3. Use a for loop to repeat your previous functions from Weekly Assignment 2 (which simulate a data frame and extract a p-value) 100 times. Store the results in a data frame that has 1 column indicating the replicate number and 1 column for the p-values (a total of 2 columns and 100 rows)
-```{r eval=FALSE}
-df_func<-function(means=c(mean1,mean2),sds=c(sd1,sd2)){
-Type<-rep(c("Control", "Treatment"), each=25)
-Value<-c(rnorm(n=25, mean=mean1, sd=sd1),(rnorm(n=25, mean=mean2, sd=sd2)))
-typevalue_df<-data.frame(Type, Value, stringsAsFactors = FALSE)
-return(typevalue_df)
+```{r}
+df_func<-function(means=c(10,45),sds=c(1.5,2)){
+Type<-rep(c("Control", "Treatment"), each=25) # create first column with 25 lines of both treatment and control
+Value<-c(rnorm(n=25, mean=means[1], sd=sds[1]),(rnorm(n=25, mean=means[2], sd=sds[2]))) # create second column with random values which also fit mean/sd criteria
+typevalue_df<-data.frame(Type, Value, stringsAsFactors = FALSE) # create df with "Type" and "Value" columns
+return(typevalue_df) # return df please
 }
+
+df_func()
 q1df<-df_func()
+
 ANOVA_Test<-aov(Value ~ Type, data=q1df)
 pvalue_func<-function(data=NULL){
   p<-summary(ANOVA_Test)[[1]][["Pr(>F)"]][1]
   return(p)
 }
+pval<-pvalue_func(data=ANOVA_Test) # assign the name pval to the pvalue returned from my ANOVA_Test
+
+newdf<-data.frame(x=1:100, y=NA) # create a new df where the first row is the replicate number and the second row is NA's which will be filled with p values following the for loop.
+
 for (i in 1:100){
-  print(df_func)
-  cat(3+2, "\n") # has nothing to do with which iteration you're in, will always produce the same value (5) in the loop
-  cat(3+i, "\n")}
+  q1df<-df_func() # run this function df_func() and assign it to the name 'q1df'
+  ANOVA_Test<-aov(Value ~ Type, data=q1df) # run an ANOVA based on my q1df data
+  pval<-pvalue_func(data=ANOVA_Test) # run the function that finds the pvalue of the ANOVA data and assign this to 'pval'
+  newdf[i,2] <- pval # in my newdf, place pval in the ith row, 2nd column (which previously was filled with NA's)
+}
+
+print(newdf)
 
 ```
 

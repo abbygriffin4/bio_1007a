@@ -17,11 +17,12 @@ output:
 3. Select your operating system. Assuming you are using Mac, you will have to install homebrew, a software which manages packages in R. To do this, open the Mac Terminal in order to speak directly to your computer. Click `command + space bar` to open your Spotlight Search and type "Terminal".   
 ![What terminal should look like](images/pt1step3.png){width=50%}    
 3. Once Terminal is open, paste this code in: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`. It will prompt you to enter a password (*but* know it will not populate, so type it and click enter). Terminal will tell you if it is successfully installed.  
-4. **Type** `brew install git` into Terminal. To check if Git is successfully installed, *File*->*New Project*->*New Directory*->*New Project*. If Git is installed, you should see the "Create a git repository" check box below the second line:
+4. **Type** `brew install git` into Terminal. To check if Git is successfully installed, *File*->*New Project*->*New Directory*->*New Project*. If Git is installed, you should see the "Create a git repository" check box below the second line:    
+
 ![](images/pt1step4.png){width=50%}    
    + *Troubleshooting tip*: if homebrew says it is installed but Git is not working, you may have to enter three commands into Terminal, as explained [here](https://www.youtube.com/watch?v=SOjSNB7F2m4))   
 5. Name your directory and create it as a subdirectory of /Users/yourusername/Desktop. Don't forget to select "create a git repository"!
-  + This directory is the location on your computer where files will be placed default.   
+  + This directory is the default location on your computer where files will be placed.       
 
 ### Part 2: Create a GitHub repository  
 1. **GitHub** is a free remote website used for public storage of projects. First, **go to github.com** and click **"Sign Up"** in the upper right hand corner. Follow the steps to create an account. Then, **sign in** using your login credentials.    
